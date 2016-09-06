@@ -1,0 +1,22 @@
+All primitive data types and operations are the same as C++
+
+
+PRINT STATEMENTS
+there are subtle differences in the print statements:
+
+System.out.println(); // prints whatever is in the () with a newline at the end
+System.out.printf(); // only prints strings???
+System.out.printf(); // is able to print numbers
+
+
+USER INPUT
+import java.util.Scanner; // need this header
+Scanner cin = new Scanner(System.in); // cin becomes an instant of the class Scanner???
+
+
+Below are diff examples
+dataType value;
+
+value = cin.next(); //reads in string. spaces will terminate string 
+value = cin.nextDouble();// reads Double
+//replace 'Double' with any other numeral dataType ie: Int, Float

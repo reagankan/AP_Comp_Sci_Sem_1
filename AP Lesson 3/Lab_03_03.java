@@ -23,13 +23,13 @@ public class Lab_03_03
 		System.out.print(name);
 		System.out.println(", we are going to find the area of a triangle.");
 		
-		System.out.println("Enter the height of the triangle");
+		System.out.println("Enter the height of the triangle in cm");
 		System.out.print(">> ");
 		
 		height = cin.nextDouble();
 		
 		
-		System.out.println("Enter the length of the triangle");
+		System.out.println("Enter the length of the triangle in cm");
 		System.out.print(">> ");
 		
 		length = cin.nextDouble();
@@ -38,7 +38,8 @@ public class Lab_03_03
 		area = 0.5 * height * length;
 		
 		System.out.print("Your area of the triangle is: ");
-		System.out.println(area);
+		System.out.print(area);
+		System.out.println("cm squared");
 
 		
 

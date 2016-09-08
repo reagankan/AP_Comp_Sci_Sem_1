@@ -1,0 +1,12 @@
+if else loop is the same as in C++
+import static java.lang.Math.pow; //includes math library so I can use pow();
+
+
+When comparing strings...
+== tests for reference equality (whether they are the same object).
+
+.equals() tests for value equality (whether they are logically "equal"). // same as == in C++
+
+String str = "test";
+new String("test").equals(str) // --> true 
+new String("tests").equals(str) // --> false 

@@ -1,0 +1,27 @@
+Notes for Lab 4
+Conversion-Characters:
+d : decimal integer [byte, short, int, long]
+f : floating-point number [float, double]
+c : character Capital C will uppercase the letter
+s : String Capital S will uppercase all the letters in the string
+h : hashcode A hashcode is like an address. This is useful for printing a reference
+n : newline Platform specific newline character- use %n instead of \n for greater compatibility 
+
+
+Here’s a quick summary of the available printf format specifiers:
+
+%c	character
+%d	decimal (integer) number (base 10)
+%e	exponential floating-point number
+%f	floating-point number
+%i	integer (base 10)
+%o	octal number (base 8)
+%s	a string of characters
+%u	unsigned decimal (integer) number
+%x	number in hexadecimal (base 16)
+%%	print a percent sign
+\%	print a percent sign
+
+
+FORMATTING DECIMALS
+printf("%JUSTIFY")

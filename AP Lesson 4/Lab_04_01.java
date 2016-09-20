@@ -7,7 +7,7 @@ public class Lab_04_01
 {
 	//Instantiate Scanner class object
 	Scanner cin = new Scanner(System.in);
-	double price = 0, subtotal = 0, tax = 0, total = 0;
+	double price = 0, running_total = 0, subtotal = 0, tax = 0.08, total = 0;
 	String num_items, specific_num, item, newline;
 	ArrayList<String> items = new ArrayList<String>();
 	ArrayList<Integer> specific_num_al = new ArrayList<Integer>();
@@ -305,6 +305,27 @@ public class Lab_04_01
 			
 		}
 		return repeat;
+	}
+	
+	public void calculate()
+	{
+		for(int iter = 0; iter < items.size(); iter++)
+		{
+			running_total += (specific_num_al.get(iter)) * (price_al.get(iter));
+		}
+		
+		subtotal = running_total * tax;
+		
+		total = subtotal + running_total;
+	}
+	
+	public void printReceipt()
+	{
+		System.out.println("******************Receipt*******************");
+		for(int iterator = 0; iterator < items.size(); iterator++)
+		{
+			System.out.print(items.get(iterator) + "")
+		}	
 	}
 	
 }

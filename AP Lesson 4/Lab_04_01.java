@@ -71,6 +71,10 @@ public class Lab_04_01
 			}
 		}
 		class_object.endl();
+		
+		class_object.calculate();
+		
+		class_object.printReceipt();
 	}	
 	
 	public void endl()
@@ -145,6 +149,7 @@ public class Lab_04_01
 	public void readinArrayList()
 	{
 		int int_num_items = Integer.parseInt(num_items);
+		int int_specific_num = 0;
 		for(int i = 0; i < int_num_items; i++)
 		{
 			if(i == 0)
@@ -165,8 +170,8 @@ public class Lab_04_01
 					System.out.print(">>");
 				
 					specific_num = cin.nextLine();
-					
-					if(num_items.length() > 2)
+					int_specific_num = Integer.parseInt(specific_num); 
+					if(int_specific_num > 99)
 					{
 						System.out.println("Error: incorrect input\nPlease enter an integer number Ex: 1 or 2 or 3...up to 99");
 						System.out.println("Try Again!");
@@ -177,7 +182,7 @@ public class Lab_04_01
 					}
 				}
 				
-				int int_specific_num = Integer.parseInt(specific_num);
+				//int int_specific_num = Integer.parseInt(specific_num);
 				specific_num_al.add(int_specific_num); //push back specific_num to array list
 				
 				
@@ -210,8 +215,8 @@ public class Lab_04_01
 					System.out.print(">>");
 				
 					specific_num = cin.nextLine();
-					
-					if(num_items.length() > 2)
+					int_specific_num = Integer.parseInt(specific_num); 
+					if(int_specific_num > 99)
 					{
 						System.out.println("Error: incorrect input\nPlease enter an integer number Ex: 1 or 2 or 3...up to 99");
 						System.out.println("Try Again!");
@@ -222,7 +227,7 @@ public class Lab_04_01
 					}
 				}
 				
-				int int_specific_num = Integer.parseInt(specific_num);
+				//int int_specific_num = Integer.parseInt(specific_num);
 				specific_num_al.add(int_specific_num); //push back specific_num to array list
 				
 				
@@ -241,7 +246,7 @@ public class Lab_04_01
 		System.out.print("You are buying...\n");
 		for(int i = 0; i < items.size(); i++)
 		{
-			System.out.print(specific_num_al.get(i) + " " + items.get(i) + " and each costs " + price_al.get(i));
+			System.out.print(specific_num_al.get(i) + "\t" + items.get(i) + " and each costs $" + price_al.get(i));
 			System.out.println();
 		}			
 	}
@@ -256,8 +261,10 @@ public class Lab_04_01
 		{
 			if(count == 0)
 			{
+				String newline_1;
 				System.out.println("Is this right?(y or n)");
 				System.out.print(">>");
+				newline_1 = cin.nextLine();
 				confirm = cin.nextLine();
 				if(confirm.equals("y"))
 				{
@@ -311,21 +318,29 @@ public class Lab_04_01
 	{
 		for(int iter = 0; iter < items.size(); iter++)
 		{
-			running_total += (specific_num_al.get(iter)) * (price_al.get(iter));
+			subtotal += (specific_num_al.get(iter) * price_al.get(iter));
+			//System.out.println("subtotal when specific_num is " + specific_num_al.get(iter) + " and price is: " + price_al.get(iter) + "is:..." +subtotal);
 		}
 		
-		subtotal = running_total * tax;
-		
-		total = subtotal + running_total;
+		total = subtotal * (1 + tax);
 	}
 	
 	public void printReceipt()
 	{
-		System.out.println("******************Receipt*******************");
+		System.out.println("********************Receipt**********************");
 		for(int iterator = 0; iterator < items.size(); iterator++)
 		{
-			System.out.print(items.get(iterator) + "")
-		}	
+			System.out.print("   Item[" + (iterator + 1) + "]: "); 
+			System.out.printf("%-5s   ", items.get(iterator));
+			System.out.print("\t\tquantity: ");
+			System.out.printf("%2d", specific_num_al.get(iterator));
+			System.out.printf("\t$%-10.2f", (price_al.get(iterator) * specific_num_al.get(iterator)));
+			System.out.println();
+		}
+		System.out.printf("\n\n   Subtotal: \t\t\t\t$%-10.2f", subtotal);
+		System.out.printf("\n   Tax: \t\t\t\t\t$%-10.2f", tax);
+		System.out.printf("\n   Total: \t\t\t\t\t$%-10.2f", total);
+		System.out.println("\n*************************************************");
 	}
 	
 }

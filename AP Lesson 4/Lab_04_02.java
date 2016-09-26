@@ -8,7 +8,7 @@ public class Lab_04_02
 	//Instantiate Scanner class object
 	Scanner cin = new Scanner(System.in);
 	int id = 0, title_decision = 7;
-	string f_name, l_name, school, subject, school_year, title;
+	String f_name, l_name, school, subject, school_year, title;
 	public static void main(String[]args)
 	{
 		//Instantiate Class object
@@ -20,19 +20,27 @@ public class Lab_04_02
 		String name;
 		Boolean cond_1 = true, cond_2 = true, redo_1 = false, redo_2 = false;
 		
-		//keeps running until the num_items is correct
+		//keeps running until the name is correct
 		while(cond_1)
 		{
-			//number of items
-			class_object.readinNumItems();
+			//First name
+			class_object.readinFirst();
 			class_object.endl();
 		
-			//Print num_items
-			class_object.printNumItems();
+			//Print f_name
+			class_object.printFirst();
+			class_object.endl();
+			
+			//Last Name
+			class_object.readinLast();
+			class_object.endl();
+		
+			//Print l_name
+			class_object.printLast();
 			class_object.endl();
 			
 			//Check the num_items
-			redo_1 = class_object.numItems_Incorrect();
+			redo_1 = class_object.nameIncorrect();
 			if(redo_1)
 			{
 				//let while loop reiterate
@@ -44,19 +52,46 @@ public class Lab_04_02
 		}
 		class_object.endl();
 		
-		//keeps running until the Array List is correct
+		
+		
+		//keeps running until everything else is correct
 		while(cond_2)
 		{
-			//cin items
-			class_object.readinArrayList();
+			//cin Title 
+			class_object.readinTitle();
 			class_object.endl();
 			
-			//cout items
-			class_object.printArrayList();	
+			//cin School
+			class_object.readinSchool();
 			class_object.endl();
 			
+			//cin Year
+			class_object.readinYear();
+			class_object.endl();
+			
+			//cin Subject
+			class_object.readinSubject();
+			class_object.endl();
+			
+			
+			
+			//cout everything to check
+			class_object.printTitle();	
+			class_object.endl();
+			
+			class_object.printSchool();	
+			class_object.endl();
+			
+			class_object.printYear();	
+			class_object.endl();
+			
+			class_object.printSubject();	
+			class_object.endl();
+			
+	
 			//Check the list of items
-			redo_2 = class_object.ArrayList_Incorrect();
+			//int count = 0;
+			redo_2 = class_object.anythingIncorrect();
 			if(redo_2)
 			{
 				//let while loop reiterate
@@ -68,9 +103,8 @@ public class Lab_04_02
 		}
 		class_object.endl();
 		
-		class_object.calculate();
 		
-		class_object.printReceipt();
+		class_object.printAll();
 	}	
 	
 	public void endl()
@@ -82,23 +116,45 @@ public class Lab_04_02
 	{	
 		System.out.println("Enter your First Name:");
 		System.out.print(">>");	
-		f_name = cin.nextLine();	
+		f_name = cin.next();	
 	}
 	public void printFirst()
 	{
 		System.out.println("Your first name is " + f_name);
 	}
 	
+	
 	public void readinLast()
 	{	
 		System.out.println("Enter your Last Name:");
 		System.out.print(">>");	
-		l_name = cin.nextLine();	
+		l_name = cin.next();	
 	}
 	public void printLast()
 	{
 		System.out.println("Your last name is " + l_name);
 	}
+	
+	
+	public Boolean nameIncorrect()
+	{
+		Boolean incorrect = false;
+		String response;
+		System.out.println("Are you " + f_name + " " + l_name + "?(y or n)");
+		response = cin.next();
+		if(response.equals("y"))
+		{
+			
+		}
+		else
+		{
+				incorrect = true;
+		}
+		return incorrect;
+	}
+	
+	
+	
 	
 	public void readinTitle()
 	{	
@@ -117,42 +173,75 @@ public class Lab_04_02
 			title = "teacher";
 		}
 	}
+	public void readinSchool()
+	{	
+		String newline;
+		System.out.println("Enter the name of the school you attend:");
+		System.out.print(">>");
+		newline = cin.nextLine();
+		school = cin.nextLine();	
+	}
+	public void readinYear()
+	{
+		System.out.println("What is the school year? (2016-2017)");
+		System.out.print(">>");	
+		school_year = cin.next();
+	}
+	public void readinSubject()
+	{
+		System.out.println("What is your subject?");
+		System.out.print(">>");	
+		subject = cin.next();
+	}
+	
+	
 	public void printTitle()
 	{
 		System.out.println("Your are a " + title);
 	}
 	
-	public void readinSchool()
-	{	
-		System.out.println("Enter the name of the school you attend:");
-		System.out.print(">>");	
-		school = cin.nextLine();	
-	}
 	public void printSchool()
 	{
 		System.out.println("You go to " + school);
 	}
-	
-	
-	
-	
-	
-	public void printReceipt()
+	public void printYear()
 	{
-		System.out.println("********************Receipt**********************");
-		for(int iterator = 0; iterator < items.size(); iterator++)
+		System.out.println("The school year is " + school_year);
+	}
+	
+	public void printSubject()
+	{
+		System.out.println("Your subject is " + subject);
+	}
+	
+	public Boolean anythingIncorrect()
+	{
+		Boolean incorrect = false;
+		String response, newline;
+		System.out.println("Is any of the information above incorrect?(y or n)");
+		newline = cin.nextLine();
+		response = cin.next();
+		if(response.equals("y"))
 		{
-			System.out.print("   Item[" + (iterator + 1) + "]: "); 
-			System.out.printf("%-5s   ", items.get(iterator));
-			System.out.print("\t\tquantity: ");
-			System.out.printf("%2d", specific_num_al.get(iterator));
-			System.out.printf("\t$%-10.2f", (price_al.get(iterator) * specific_num_al.get(iterator)));
-			System.out.println();
+			incorrect = true;
 		}
-		System.out.printf("\n\n   Subtotal: \t\t\t\t$%-10.2f", subtotal);
-		System.out.printf("\n   Tax: \t\t\t\t\t$%-10.2f", tax);
-		System.out.printf("\n   Total: \t\t\t\t\t$%-10.2f", total);
-		System.out.println("\n*************************************************");
+		return incorrect;
+	}
+	
+	
+	
+
+	public void printAll()
+	{
+		System.out.println("********************Student ID**********************");
+		
+		System.out.println("Name: \t\t\t\t\t" + f_name + " " + l_name);
+		System.out.println("School: \t\t\t\t\t" + school);
+		System.out.println("Year: \t\t\t\t\t" + school_year);
+		System.out.println("Title: \t\t\t\t\t" + title);
+		System.out.println("Subject: \t\t\t\t\t" + subject);
+		
+		System.out.println("***************************************************");
 	}
 	
 }

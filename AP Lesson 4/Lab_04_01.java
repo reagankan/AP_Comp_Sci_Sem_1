@@ -19,7 +19,7 @@ public class Lab_04_01
 		Lab_04_01 class_object = new Lab_04_01();
 		
 		
-		System.out.println("Lab 4 Part 1: Receipt\n\n");
+		System.out.println("Lab 4 Exercise 1: Receipt\n\n");
 		
 		String name;
 		Boolean cond_1 = true, cond_2 = true, redo_1 = false, redo_2 = false;

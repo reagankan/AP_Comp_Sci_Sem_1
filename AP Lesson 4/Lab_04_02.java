@@ -15,10 +15,13 @@ public class Lab_04_02
 		Lab_04_02 class_object = new Lab_04_02();
 		
 		
-		System.out.println("Lab 4 Part 2: School ID\n\n");
+		System.out.println("Lab 4 Exercise 2: School ID\n\n");
 		
-		String name;
-		Boolean cond_1 = true, cond_2 = true, redo_1 = false, redo_2 = false;
+		
+		Boolean cond_1 = true, 
+				cond_2 = true, 
+				redo_1 = false, 
+				redo_2 = false;
 		
 		//keeps running until the name is correct
 		while(cond_1)
@@ -183,7 +186,7 @@ public class Lab_04_02
 	}
 	public void readinYear()
 	{
-		System.out.println("What is the school year? (2016-2017)");
+		System.out.println("What is the school year? (Ex: 1999-2000 or 2016-2017)");
 		System.out.print(">>");	
 		school_year = cin.next();
 	}

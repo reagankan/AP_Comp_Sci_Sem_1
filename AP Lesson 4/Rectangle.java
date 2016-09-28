@@ -3,18 +3,21 @@ import java.util.Vector;
 import java.util.ArrayList;
 import static java.lang.Math.pow;
 
-public class Lab_04_04
+public class Rectangle
 {
 	//Instantiate Scanner class object
 	static Scanner cin = new Scanner(System.in);
-
+	static double length = 0;
+	static double width = 0;
+	static double perimeter = 0;
+	
 	public static void main(String[]args)
 	{
 		//Instantiate Class object
-		Lab_04_04 class_object = new Lab_04_04();
+		Rectangle class_object = new Rectangle();
 		
 		
-		System.out.println("Lab 4 Exercise 4: Subwoofer Boxes\n\n");
+		System.out.println("Lab 4.2 Exercise 1: Rectangle\n\n");
 		
 		String name;
 		Boolean cond_1 = true, 
@@ -22,41 +25,26 @@ public class Lab_04_04
 				redo_1 = false;
 				//redo_2 = false;
 		
-		double length = 0,
-			   width = 0,
-			   height = 0,
-			   in_volume = 0,
-			   ft_volume = 0;
-		
 		//keeps running until everything is correct
 		while(cond_1)
 		{
 			//cin Length 
-			System.out.println("Length in inches:");
+			System.out.println("Length:");
 			System.out.print(">>");	
 			length = cin.nextDouble();
 			endl();
 			
 			//cin Width
-			System.out.println("Width in inches:");
+			System.out.println("Width:");
 			System.out.print(">>");	
 			width = cin.nextDouble();
 			endl();
-			
-			//cin Height
-			System.out.println("Height in inches:");
-			System.out.print(">>");	
-			height = cin.nextDouble();
-			endl();
 
-			
 			
 			//cout everything to check
-			System.out.println("Length:\t\t\t   " + length + " inches.");	
+			System.out.println("Length:\t\t\t   " + length);	
 
-			System.out.println("Width:\t\t\t   " + width + " inches.");
-
-			System.out.println("Height:\t\t\t   " + height + " inches.");
+			System.out.println("Width:\t\t\t   " + width);
 
 			//Check Everything
 			redo_1 = class_object.anythingIncorrect();
@@ -71,9 +59,10 @@ public class Lab_04_04
 		}
 		endl();
 		
-		in_volume = class_object.calcInches(length, width, height);
-		ft_volume = class_object.calcFeet(in_volume);
-		System.out.println("The volume in cubic ft is " + ft_volume);
+		class_object.calcPerimeter(length, width);
+		
+		System.out.printf("Your rectangle is %10.5fft around.", perimeter);
+		endl();
 	}	
 	
 	public static void endl()
@@ -97,13 +86,10 @@ public class Lab_04_04
 		return incorrect;
 	}
 	
-	public double calcInches(double l, double w, double h)
+	public void calcPerimeter(double l, double w)
 	{
-		return l*w*h;
+		perimeter = (2*l) + (2*w);
 	}
-	public double calcFeet(double in_volume)
-	{
-		return in_volume/1728;
-	}
+
 	
 }

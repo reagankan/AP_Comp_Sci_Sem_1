@@ -82,7 +82,8 @@ public class Lab_04_03
 		endl();
 		
 		loan = class_object.Calculate(interest, principal, num_compound, years);
-		System.out.println("Your monthly loan is " + loan);
+		System.out.printf("Your monthly loan is %20.2f dollars", loan);
+		endl();
 	}	
 	
 	public static void endl()
@@ -109,7 +110,8 @@ public class Lab_04_03
 	public double Calculate(double r, double p, double n, double t)
 	{
 		double loan = 0;
-		loan = p*(Math.pow(((1+r)/n), (n*t))/(t*12));
+		loan = p*(Math.pow((1+(r/n)), (n*t)/(t*12)));
+		//System.out.println(loan);
 		return loan;
 	}
 	

@@ -141,17 +141,27 @@ public class Lab_04_02
 	
 	public Boolean nameIncorrect()
 	{
-		Boolean incorrect = false;
-		String response;
-		System.out.println("Are you " + f_name + " " + l_name + "?(y or n)");
-		response = cin.next();
-		if(response.equals("y"))
+		Boolean exit = false, 
+				incorrect = false;
+		while(exit == false)
 		{
 			
-		}
-		else
-		{
+			String response;
+			System.out.println("Are you " + f_name + " " + l_name + "?(y or n)");
+			response = cin.next();
+			if(response.equals("y"))
+			{
+				exit = true;
+			}
+			else if(response.equals("n"))
+			{
 				incorrect = true;
+				exit = true;
+			}
+			else
+			{
+				System.out.println("Please only enter y or n\n");
+			}
 		}
 		return incorrect;
 	}
@@ -161,19 +171,30 @@ public class Lab_04_02
 	
 	public void readinTitle()
 	{	
-		System.out.println("Are you a...(1 or 2)");
-		System.out.println("1. Student");
-		System.out.println("2. Teacher");
-		System.out.print(">>");	
-		title_decision = cin.nextInt();	
+		Boolean exit = false;
 		
-		if(title_decision == 1)
+		while(exit == false)
 		{
-			title = "student";
-		}
-		else
-		{
-			title = "teacher";
+			System.out.println("Are you a...(1 or 2)");
+			System.out.println("1. Student");
+			System.out.println("2. Teacher");
+			System.out.print(">>");	
+			title_decision = cin.nextInt();	
+			
+			if(title_decision == 1)
+			{
+				title = "student";
+				exit = true;
+			}
+			else if(title_decision == 2)
+			{
+				title = "teacher";
+				exit = true;
+			}
+			else
+			{
+				System.out.println("Please only enter 1 or 2");
+			}
 		}
 	}
 	public void readinSchool()

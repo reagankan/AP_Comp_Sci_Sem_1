@@ -10,7 +10,8 @@ public class Circle
 	
 	//global variables
 	static double radius = 0, area = 0, pi = Math.PI;
-	
+	//4.2 instainse with void
+	//4.3 return methods
 	
 	public static void main(String[]args)
 	{	

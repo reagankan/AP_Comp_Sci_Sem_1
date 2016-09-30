@@ -3,18 +3,17 @@ import java.util.Vector;
 import java.util.ArrayList;
 import static java.lang.Math.pow;
 
-public class Circle
+public class Rectangle
 {
 	//Instantiate Scanner class object
 	static Scanner cin = new Scanner(System.in);
-	
-	//global variables
-	static double radius = 0, area = 0, pi = Math.PI;
-	
+	static double length = 0,
+				  width = 0,
+				  perimeter = 0;
 	
 	public static void main(String[]args)
-	{	
-		System.out.println("Lab 4.2 Exercise 4: Circle\n");
+	{		
+		System.out.println("Lab 4.3 Exercise 1: Rectangle\n\n");
 		
 		String name;
 		Boolean cond_1 = true, 
@@ -25,12 +24,9 @@ public class Circle
 		//keeps running until everything is correct
 		while(cond_1)
 		{
-			//cin num_nums 
-			readinRadius();
-		
-			//cout num_nums to check
-			printRadius();
-			
+			readinData();
+			printData();
+
 			//Check Everything
 			redo_1 = anythingIncorrect();
 			if(redo_1)
@@ -44,9 +40,8 @@ public class Circle
 		}
 		endl();
 		
-		calcArea();
-		printArea();
-		endl();
+		perimeter = calcPerimeter(length, width);
+		printPerimeter();
 	}	
 	
 	public static void endl()
@@ -54,18 +49,6 @@ public class Circle
 		System.out.println();
 	}
 	
-	
-	public static void readinRadius()
-	{
-		System.out.println("Radius:");
-		System.out.print(">>");	
-		radius = cin.nextDouble();
-		endl();
-	}
-	public static void printRadius()
-	{
-		System.out.println("Radius:   " + radius);
-	}
 	
 	
 	public static Boolean anythingIncorrect()
@@ -82,18 +65,39 @@ public class Circle
 		return incorrect;
 	}
 	
-	public static void calcArea()
+	public static void readinData()
 	{
-		area = pi * pow(radius,2);
+		//cin Length 
+			System.out.println("Length:");
+			System.out.print(">>");	
+			length = cin.nextDouble();
+			endl();
+			
+			//cin Width
+			System.out.println("Width:");
+			System.out.print(">>");	
+			width = cin.nextDouble();
+			endl();
 	}
 	
-	public static void printArea()
+	
+	public static void printData()
 	{
-		String str = "The area of a circle with a radius of ";
-		
-		str += Double.toString(radius);
-		str += " is %10.5f";
-		System.out.printf(str, area);
+		//cout everything to check
+			System.out.println("Length:\t" + length);	
+
+			System.out.println("Width:\t" + width);
+	}
+	
+	public static double calcPerimeter(double l, double w)
+	{
+		return (2*l) + (2*w);
+	}
+
+	public static void printPerimeter()
+	{
+		System.out.printf("Your rectangle is %10.5fft around.", perimeter);
 		endl();
 	}
+	
 }

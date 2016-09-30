@@ -3,18 +3,18 @@ import java.util.Vector;
 import java.util.ArrayList;
 import static java.lang.Math.pow;
 
-public class Circle
+public class Cube
 {
 	//Instantiate Scanner class object
 	static Scanner cin = new Scanner(System.in);
 	
 	//global variables
-	static double radius = 0, area = 0, pi = Math.PI;
+	static double side_length = 0, surface_area = 0;
 	
 	
 	public static void main(String[]args)
-	{	
-		System.out.println("Lab 4.2 Exercise 4: Circle\n");
+	{
+		System.out.println("Lab 4.3 Exercise 3: Cube\n");
 		
 		String name;
 		Boolean cond_1 = true, 
@@ -26,11 +26,17 @@ public class Circle
 		while(cond_1)
 		{
 			//cin num_nums 
-			readinRadius();
-		
-			//cout num_nums to check
-			printRadius();
+			System.out.println("Side Length:");
+			System.out.print(">>");	
+			side_length = cin.nextDouble();
+			endl();
 			
+			
+			//cout num_nums to check
+			System.out.println("Side Length:   " + side_length);	
+			
+
+
 			//Check Everything
 			redo_1 = anythingIncorrect();
 			if(redo_1)
@@ -44,27 +50,14 @@ public class Circle
 		}
 		endl();
 		
-		calcArea();
-		printArea();
+		calcSurfaceArea();
+		printSurfaceArea();
 		endl();
 	}	
 	
 	public static void endl()
 	{
 		System.out.println();
-	}
-	
-	
-	public static void readinRadius()
-	{
-		System.out.println("Radius:");
-		System.out.print(">>");	
-		radius = cin.nextDouble();
-		endl();
-	}
-	public static void printRadius()
-	{
-		System.out.println("Radius:   " + radius);
 	}
 	
 	
@@ -82,18 +75,18 @@ public class Circle
 		return incorrect;
 	}
 	
-	public static void calcArea()
+	public static void calcSurfaceArea()
 	{
-		area = pi * pow(radius,2);
+		surface_area = 6 * pow(side_length,2);
 	}
 	
-	public static void printArea()
+	public static void printSurfaceArea()
 	{
-		String str = "The area of a circle with a radius of ";
+		String str = "The surface area of a cube with side length ";
 		
-		str += Double.toString(radius);
+		str += Double.toString(side_length);
 		str += " is %10.5f";
-		System.out.printf(str, area);
+		System.out.printf(str, surface_area);
 		endl();
 	}
 }

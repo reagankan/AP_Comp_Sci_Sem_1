@@ -13,11 +13,7 @@ public class Circle
 	
 	
 	public static void main(String[]args)
-	{
-		//Instantiate Class object
-		Circle class_object = new Circle();
-		
-		
+	{	
 		System.out.println("Lab 4.2 Exercise 4: Circle\n");
 		
 		String name;

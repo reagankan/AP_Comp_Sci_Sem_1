@@ -33,22 +33,34 @@ public class Lab_02
 	
 		/**/
 		System.out.println("\n\nConcatenation\n");
-		String name, address, city, zipcode, output;
+		String name, newline, address, city, state, zipcode, nation, output;
 		
-		System.out.printf("Enter your name NO SPACES:  ");
-		name = cin.next();
+		System.out.println("Enter your name:");
+		System.out.print(">>");
+		newline = cin.nextLine();
+		name = cin.nextLine();
 		
-		System.out.printf("Enter the just the street name NO SPACES:  ");
-		address = cin.next();
+		System.out.println("Enter the street name:");
+		System.out.print(">>");
+		address = cin.nextLine();
 		
-		System.out.printf("Enter the city name as one word NO SPACES:  ");
-		city = cin.next();
+		System.out.println("Enter the city name:");
+		System.out.print(">>");
+		city = cin.nextLine();
 		
-		System.out.printf("Enter the zipcode NO SPACES:  ");
-		zipcode = cin.next();
+		System.out.println("Enter the name of your state/province:");
+		System.out.print(">>");
+		state = cin.nextLine();
 		
-		output = "Hi, my name is " + name + "!\nHere is my address:  " + address + " " + city + " " + zipcode;
+		System.out.println("Enter the zipcode:");
+		System.out.print(">>");
+		zipcode = cin.nextLine();
 		
+		System.out.println("Enter the country:");
+		System.out.print(">>");
+		nation = cin.nextLine();
+		
+		output = name + "\n" + address + "\n" + city + ", " + state + " " + zipcode + "\n" + nation;
 		System.out.println(output);
 		
 		

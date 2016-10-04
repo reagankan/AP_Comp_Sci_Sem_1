@@ -15,6 +15,9 @@ public class Circle
 	
 	public static void main(String[]args)
 	{	
+		//Instantiate Class object
+		Circle class_object = new Circle();
+		
 		System.out.println("Lab 4.2 Exercise 4: Circle\n");
 		
 		String name;
@@ -27,13 +30,13 @@ public class Circle
 		while(cond_1)
 		{
 			//cin num_nums 
-			readinRadius();
+			class_object.readinRadius();
 		
 			//cout num_nums to check
-			printRadius();
+			class_object.printRadius();
 			
 			//Check Everything
-			redo_1 = anythingIncorrect();
+			redo_1 = class_object.anythingIncorrect();
 			if(redo_1)
 			{
 				//let while loop reiterate
@@ -45,8 +48,8 @@ public class Circle
 		}
 		endl();
 		
-		calcArea();
-		printArea();
+		class_object.calcArea();
+		class_object.printArea();
 		endl();
 	}	
 	
@@ -56,20 +59,20 @@ public class Circle
 	}
 	
 	
-	public static void readinRadius()
+	public void readinRadius()
 	{
 		System.out.println("Radius:");
 		System.out.print(">>");	
 		radius = cin.nextDouble();
 		endl();
 	}
-	public static void printRadius()
+	public void printRadius()
 	{
 		System.out.println("Radius:   " + radius);
 	}
 	
 	
-	public static Boolean anythingIncorrect()
+	public Boolean anythingIncorrect()
 	{
 		Boolean incorrect = false;
 		String response, newline;
@@ -83,12 +86,12 @@ public class Circle
 		return incorrect;
 	}
 	
-	public static void calcArea()
+	public void calcArea()
 	{
 		area = pi * pow(radius,2);
 	}
 	
-	public static void printArea()
+	public void printArea()
 	{
 		String str = "The area of a circle with a radius of ";
 		

@@ -10,7 +10,7 @@ public class Average
 	
 	//global variables
 	static double num_nums = 0, num = 0, average = 0;
-	Vector<Double> values = new Vector<Double>();
+	static Vector<Double> values = new Vector<Double>();
 	
 	public static void main(String[]args)
 	{

@@ -46,6 +46,7 @@ public class Average
 			if(redo_1)
 			{
 				//let while loop reiterate
+				values.clear();
 			}
 			else
 			{

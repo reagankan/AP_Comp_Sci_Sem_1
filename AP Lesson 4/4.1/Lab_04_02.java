@@ -8,7 +8,7 @@ public class Lab_04_02
 	//Instantiate Scanner class object
 	Scanner cin = new Scanner(System.in);
 	int id = 0, title_decision = 7;
-	String f_name, l_name, school, subject, school_year, title;
+	String f_name, l_name, school, subject, school_year, title, newline;
 	public static void main(String[]args)
 	{
 		//Instantiate Class object
@@ -209,13 +209,16 @@ public class Lab_04_02
 	{
 		System.out.println("What is the school year? (Ex: 1999-2000 or 2016-2017)");
 		System.out.print(">>");	
-		school_year = cin.next();
+		//newline = cin.nextLine();
+		school_year = cin.nextLine();
+
 	}
 	public void readinSubject()
 	{
-		System.out.println("What is your subject?");
-		System.out.print(">>");	
-		subject = cin.next();
+		System.out.print("What is your subject?");
+		System.out.print("\n>>");	
+		//newline = cin.nextLine();
+		subject = cin.nextLine();
 	}
 	
 	
@@ -243,7 +246,7 @@ public class Lab_04_02
 		Boolean incorrect = false;
 		String response, newline;
 		System.out.println("Is any of the information above incorrect?(y or n)");
-		newline = cin.nextLine();
+		//newline = cin.nextLine();
 		response = cin.next();
 		if(response.equals("y"))
 		{

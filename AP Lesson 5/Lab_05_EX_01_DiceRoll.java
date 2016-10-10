@@ -3,20 +3,21 @@ import java.util.Vector;
 import java.util.ArrayList;
 import static java.lang.Math.pow;
 import static java.lang.Math.random;
+import java.util.Random;
 
 public class Lab_05_EX_01_DiceRoll
 {
 	//Instantiate Scanner class object
-	Scanner cin = new Scanner(System.in);
+	static Scanner cin = new Scanner(System.in);
 	
 	//Instantiate Random class object
-	Random random = new Random();
+	static Random random = new Random();
 	
 	static double player_num = 0,
 			      computer_num = 0;
 				  
 	static String player_name, 
-				  computer = "Computer",
+				  computer = "the Computer",
 				  winner,
 				  confirm;
 				  
@@ -41,7 +42,7 @@ public class Lab_05_EX_01_DiceRoll
 			//Check Everything
 			redo_1 = anythingIncorrect();
 			
-			if(redo_1)
+			if(redo_1)//something is wrong
 			{
 				//let while loop reiterate
 			}
@@ -63,7 +64,7 @@ public class Lab_05_EX_01_DiceRoll
 	
 	public static void readinName()
 	{
-		System.out.println("Interest:");
+		System.out.println("Name:");
 		System.out.print(">>");	
 		player_name = cin.nextLine();
 		endl();
@@ -85,6 +86,7 @@ public class Lab_05_EX_01_DiceRoll
 			if(confirm.equals("y"))
 			{
 				cond = false;
+				incorrect = false;
 			}
 			else if(confirm.equals("n"))
 			{
@@ -102,7 +104,7 @@ public class Lab_05_EX_01_DiceRoll
 		return incorrect;
 	}
 	
-	public static double rollDice()
+	public static void rollDice()
 	{
 		Boolean same_num = true;
 		while(same_num)
@@ -117,17 +119,19 @@ public class Lab_05_EX_01_DiceRoll
 		
 		if(computer_num > player_num)
 		{
-			winner += computer;
+			winner = computer;
 		}
 		else
 		{
-			winner += player_name;
+			winner = player_name;
 		}
 	}
 	
 	public static void printResults()
 	{
-		System.out.println("You rolled a " + player_num.toString());
+		System.out.println("You rolled a " + Double.toString(player_num));
+		System.out.println("The Computer rolled a " + Double.toString(computer_num));
+		System.out.println("The winner is " + winner);
 	}
 	
 }

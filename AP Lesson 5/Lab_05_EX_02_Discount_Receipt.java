@@ -7,7 +7,7 @@ public class Lab_05_EX_02_Discount_Receipt
 {
 	//Instantiate Scanner class object
 	static Scanner cin = new Scanner(System.in);
-	static double price = 0, running_total = 0, subtotal = 0, tax = 0.08, total = 0, tax_value = 0;
+	static double price = 0, running_total = 0, subtotal = 0, tax = 0.08, total = 0, tax_value = 0, discount = 0;
 	static String num_items, specific_num, item, newline, title_spacing = " ", divider = "*********************************************", str_price;
 	static String tax_str = "0.08%";
 	static ArrayList<String> items = new ArrayList<String>();
@@ -105,7 +105,6 @@ public class Lab_05_EX_02_Discount_Receipt
 		}
 		for(int ii = 0; ii < max_len_price + max_len_item-7; ii++)
 		{
-			//divider = divider.concat("*");
 			divider += '*';
 		}
 		title_len = divider.length()-7;
@@ -357,8 +356,14 @@ public class Lab_05_EX_02_Discount_Receipt
 			//System.out.println("subtotal when specific_num is " + specific_num_al.get(iter) + " and price is: " + price_al.get(iter) + "is:..." +subtotal);
 		}
 		
-		total = subtotal * (1 + tax);
-		tax_value = subtotal * tax;
+		if(subtotal > 2000)
+		{
+			discount = subtotal * 0.15;
+		}
+		
+		total = subtotal - discount;
+		tax_value = total * tax;
+		total *= (1 + tax);
 	}
 	
 	public static void printReceipt()
@@ -375,7 +380,9 @@ public class Lab_05_EX_02_Discount_Receipt
 			System.out.printf("\t$%-10.2f", (price_al.get(iterator) * specific_num_al.get(iterator)));
 			System.out.println();
 		}
+		
 		System.out.printf("\n\n   Subtotal: \t\t\t\t$%-10.2f", subtotal);
+		System.out.printf("\n   Discount: \t\t\t\t-$%-10.2f", discount);
 		System.out.print("\n   Tax" + "(" + tax_str + "): \t\t\t\t");
 		System.out.printf("$%-10.2f", tax_value);
 		System.out.printf("\n   Total: \t\t\t\t\t$%-10.2f", total);

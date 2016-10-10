@@ -8,7 +8,7 @@ public class Lab_05_EX_02_Discount_Receipt
 	//Instantiate Scanner class object
 	static Scanner cin = new Scanner(System.in);
 	static double price = 0, running_total = 0, subtotal = 0, tax = 0.08, total = 0, tax_value = 0;
-	static String num_items, specific_num, item, newline, divider = "*********************************************", str_price;
+	static String num_items, specific_num, item, newline, title_spacing = " ", divider = "*********************************************", str_price;
 	static String tax_str = "0.08%";
 	static ArrayList<String> items = new ArrayList<String>();
 	static ArrayList<Integer> specific_num_al = new ArrayList<Integer>();
@@ -83,6 +83,7 @@ public class Lab_05_EX_02_Discount_Receipt
 	{
 		int max_len_item = 0,
 			max_len_price = 0,
+			title_len = 0,
 			temp = 0;
 		
 		for(int i = 0; i < items.size(); i++)
@@ -107,6 +108,13 @@ public class Lab_05_EX_02_Discount_Receipt
 			//divider = divider.concat("*");
 			divider += '*';
 		}
+		title_len = divider.length()-7;
+		
+		for(int iii = 0; iii < title_len; iii++)
+		{
+			title_spacing += ' ';
+		}
+		
 	}
 	
 	public static void readinNumItems()
@@ -355,7 +363,7 @@ public class Lab_05_EX_02_Discount_Receipt
 	
 	public static void printReceipt()
 	{
-		System.out.println("Receipt");
+		System.out.println(title_spacing + "Receipt");
 		System.out.println(divider);
 		//System.out.println(divider + divider + divider + divider);
 		for(int iterator = 0; iterator < items.size(); iterator++)

@@ -6,20 +6,16 @@ import static java.lang.Math.pow;
 public class Lab_04_01
 {
 	//Instantiate Scanner class object
-	Scanner cin = new Scanner(System.in);
-	double price = 0, running_total = 0, subtotal = 0, tax = 0.08, total = 0, tax_value = 0;
-	String num_items, specific_num, item, newline;
-	String tax_str = "0.08%";
-	ArrayList<String> items = new ArrayList<String>();
-	ArrayList<Integer> specific_num_al = new ArrayList<Integer>();
-	ArrayList<Double> price_al = new ArrayList<Double>();
+	static Scanner cin = new Scanner(System.in);
+	static double price = 0, running_total = 0, subtotal = 0, tax = 0.08, total = 0, tax_value = 0;
+	static String num_items, specific_num, item, newline, divider = "*********************************************", str_price, title_spacing;
+	static String tax_str = "0.08%";
+	static ArrayList<String> items = new ArrayList<String>();
+	static ArrayList<Integer> specific_num_al = new ArrayList<Integer>();
+	static ArrayList<Double> price_al = new ArrayList<Double>();
 	
 	public static void main(String[]args)
 	{
-		//Instantiate Class object
-		Lab_04_01 class_object = new Lab_04_01();
-		
-		
 		System.out.println("Lab 4 Exercise 1: Receipt\n\n");
 		
 		String name;
@@ -29,15 +25,15 @@ public class Lab_04_01
 		while(cond_1)
 		{
 			//number of items
-			class_object.readinNumItems();
-			class_object.endl();
+			readinNumItems();
+			endl();
 		
 			//Print num_items
-			class_object.printNumItems();
-			class_object.endl();
+			printNumItems();
+			endl();
 			
 			//Check the num_items
-			redo_1 = class_object.numItems_Incorrect();
+			redo_1 = numItems_Incorrect();
 			if(redo_1)
 			{
 				//let while loop reiterate
@@ -47,21 +43,21 @@ public class Lab_04_01
 				cond_1 = false;
 			}
 		}
-		class_object.endl();
+		endl();
 		
 		//keeps running until the Array List is correct
 		while(cond_2)
 		{
 			//cin items
-			class_object.readinArrayList();
-			class_object.endl();
+			readinArrayList();
+			endl();
 			
 			//cout items
-			class_object.printArrayList();	
-			class_object.endl();
+			printArrayList();	
+			endl();
 			
 			//Check the list of items
-			redo_2 = class_object.ArrayList_Incorrect();
+			redo_2 = ArrayList_Incorrect();
 			if(redo_2)
 			{
 				//let while loop reiterate
@@ -71,19 +67,49 @@ public class Lab_04_01
 				cond_2 = false;
 			}
 		}
-		class_object.endl();
+		endl();
 		
-		class_object.calculate();
-		
-		class_object.printReceipt();
+		discount();
+		createDividers();
+		printReceipt();
 	}	
 	
-	public void endl()
+	public static void endl()
 	{
 		System.out.println();
 	}
 	
-	public void readinNumItems()
+	public static void createDividers()
+	{
+		int max_len_item = 0,
+			max_len_price = 0,
+			temp = 0;
+		
+		for(int i = 0; i < items.size(); i++)
+		{
+			//change price to string --> lets us find length
+			str_price = Double.toString(price_al.get(i));
+			
+			temp = items.get(i).length();
+			if(temp > max_len_item)
+			{
+				max_len_item = temp;
+			}
+			
+			temp = str_price.length();
+			if(temp > max_len_price)
+			{
+				max_len_price = temp;
+			}
+		}
+		for(int ii = 0; ii < max_len_price + max_len_item-7; ii++)
+		{
+			//divider = divider.concat("*");
+			divider += '*';
+		}
+	}
+	
+	public static void readinNumItems()
 	{
 		Boolean cond = true;
 		while(cond)
@@ -104,7 +130,7 @@ public class Lab_04_01
 		}
 		
 	}
-	public void printNumItems()
+	public static void printNumItems()
 	{
 		if(num_items.equals("1"))
 		{
@@ -116,7 +142,7 @@ public class Lab_04_01
 		}
 	}
 	
-	public Boolean numItems_Incorrect()
+	public static Boolean numItems_Incorrect()
 	{
 		String confirm;
 		Boolean cond = true, repeat = false;
@@ -147,7 +173,7 @@ public class Lab_04_01
 	}
 	
 
-	public void readinArrayList()
+	public static void readinArrayList()
 	{
 		int int_num_items = Integer.parseInt(num_items);
 		int int_specific_num = 0;
@@ -242,7 +268,7 @@ public class Lab_04_01
 		}
 	}
 
-	public void printArrayList()
+	public static void printArrayList()
 	{
 		System.out.print("You are buying...\n");
 		for(int i = 0; i < items.size(); i++)
@@ -252,7 +278,7 @@ public class Lab_04_01
 		}			
 	}
 	
-	public Boolean ArrayList_Incorrect()
+	public static Boolean ArrayList_Incorrect()
 	{
 		String confirm;
 		Boolean cond = true, repeat = false;
@@ -315,7 +341,7 @@ public class Lab_04_01
 		return repeat;
 	}
 	
-	public void calculate()
+	public static void discount()
 	{
 		for(int iter = 0; iter < items.size(); iter++)
 		{
@@ -327,9 +353,11 @@ public class Lab_04_01
 		tax_value = subtotal * tax;
 	}
 	
-	public void printReceipt()
+	public static void printReceipt()
 	{
-		System.out.println("********************Receipt**********************");
+		System.out.println("Receipt");
+		System.out.println(divider);
+		//System.out.println(divider + divider + divider + divider);
 		for(int iterator = 0; iterator < items.size(); iterator++)
 		{
 			System.out.print("   Item[" + (iterator + 1) + "]: "); 
@@ -343,7 +371,8 @@ public class Lab_04_01
 		System.out.print("\n   Tax" + "(" + tax_str + "): \t\t\t\t");
 		System.out.printf("$%-10.2f", tax_value);
 		System.out.printf("\n   Total: \t\t\t\t\t$%-10.2f", total);
-		System.out.println("\n*************************************************");
+		endl();
+		System.out.println(divider);
 	}
 	
 }

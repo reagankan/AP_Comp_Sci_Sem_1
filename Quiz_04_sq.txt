@@ -1,0 +1,18 @@
+System.out.printf("The total cost of your order is $%.2f", one + two);
+
+System.out.printf(item + ""........$%.2f", price); //incorrect
+System.out.printf("%15s........$%.2f", item, price); // correct
+
+A //incorrect
+D // correct
+
+System.out.printf("The surface area of your cube is %.5f inches.", calcSurf(side));
+
+System.out.printf("The sum of " + one + " and " + two + " is %.2f", calcSum(one, two));
+
+C//correct  
+D//incorrect --> static int radius; //radius initializes as 0.000
+
+D
+
+A//apparently there is no newline error

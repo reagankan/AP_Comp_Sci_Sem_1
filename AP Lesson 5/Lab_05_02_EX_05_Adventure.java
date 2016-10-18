@@ -76,8 +76,8 @@ public class Lab_05_02_EX_05_Adventure
 			4 Nightmare
 			5 Sleep for a long time?
 		*/
-		readinChoice(0);
-		if(returnChoice(0).equals("y")){
+		readinChoice(0);// Wake up?
+		if(returnChoice(0).equals("y")){// Wakes up
 			conclusion.add("You wake up.");
 			readinChoice(1);
 			if(returnChoice(1).equals("y")){
@@ -88,7 +88,7 @@ public class Lab_05_02_EX_05_Adventure
 					conclusion.add("You end up working too hard and you fall asleep exhausted...");
 				}
 				else{
-					conclusion.add("You dont work working.");
+					conclusion.add("You dont work.");
 					conclusion.add("You start messing around on the computer.");
 					conclusion.add("Your boss finds out and you are fired...");
 				}
@@ -100,20 +100,20 @@ public class Lab_05_02_EX_05_Adventure
 					conclusion.add("You are too hungry to work efficiently and your boss fires you...");
 				}
 				else{
-					conclusion.add("You dont work working.");
+					conclusion.add("You dont work.");
 					conclusion.add("You start messing around on the computer.");
 					conclusion.add("Your boss finds out and you are fired...");
 				}
 			}
 		}
-		else{
+		else{// does not wake up...
 			conclusion.add("You don't wake up.");
-			readinChoice(3);
-			if(returnChoice(3).equals("y")){
+			readinChoice(3);//Dream?
+			if(returnChoice(1).equals("y")){//dreams
 				conclusion.add("You have a dream.");
 				readinChoice(4);
-				if(returnChoice(4).equals("y")){
-					conclusion.add("It is a nightmare");
+				if(returnChoice(2).equals("y")){
+					conclusion.add("It is a nightmare.");
 					conclusion.add("You wake up, immediately sitting up and smashing your head into the ceiling...you were sleeping in the top bunk...");
 				}
 				else{
@@ -121,17 +121,18 @@ public class Lab_05_02_EX_05_Adventure
 					conclusion.add("You dream of waking up in a world made of candy...");
 				}
 			}
-			else{
-				conclusion.add("You wake up.");
+			else{//does not dream
+				conclusion.add("You do not have a dream.");
 				readinChoice(5);
-				if(returnChoice(5).equals("y")){
-					conclusion.add("You develop bed sore after sleeping for 2 years...");
+				if(returnChoice(2).equals("y")){
+					conclusion.add("You develop bed sores after sleeping for 2 years...");
 				}
 				else{
-					conclusion.add("You suddenly roll off your bed, only getting in a couple minutes of sleep...");
+					conclusion.add("You sleep for 45 seconds before rolling off your bed and waking up... ");
 				}
 			}
 		}
+		conclusion.add("Fin.");
 	}
 	public static void printStory()
 	{

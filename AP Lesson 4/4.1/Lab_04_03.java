@@ -110,8 +110,8 @@ public class Lab_04_03
 	public double Calculate(double r, double p, double n, double t)
 	{
 		double loan = 0;
-		loan = p*(Math.pow((1+(r/n)), (n*t)/(t*12)));
-		//System.out.println(loan);
+		loan = p * (Math.pow((1+(r/n)),(n*t)));
+		loan /= 12*t;
 		return loan;
 	}
 	

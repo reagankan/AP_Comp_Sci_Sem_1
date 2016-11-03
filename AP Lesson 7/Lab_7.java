@@ -17,266 +17,179 @@ public class Lab_7
 		
 		create_exercise_name();
 		
-		Ex_1_v1 one_v1 = new Ex_1_v1();
-		one_v1.main();
-		
-		Ex_1_v2 one_v2 = new Ex_1_v2();
-		one_v2.main();
+		Ex_1 one = new Ex_1();
+		one.main();
 		
 		Ex_2 two = new Ex_2();
 		two.main();
-		
-		/*
+	
 		Ex_3 three = new Ex_3();
 		three.main();
+		
 		Ex_4 four = new Ex_4();
-		four.main();*/
+		four.main();
 	}	
-	public static class Ex_1_v1
+	public static class Ex_1
 	{
-		static String str_num;
-		static int num = 0, sum = 0, temp = 0;
+		static String number;
+		static int num = 0, sum = 0;
 		public static void main()
 		{
 			printHeading(1);
-			System.out.println("Version 1");
 			readinNum();
+			sumDigits();
 			printSum();
 		}
 		public static void readinNum()
 		{
 			boolean cond = true;
-			int limit = 0;
-			char dot = '.', negative = '-';
 			while(cond)
 			{
-				limit = 0;
-				System.out.println("Enter any positive integer:");
+				System.out.println("Enter a positive integer");
 				System.out.print(">>");
-				str_num = cin.nextLine();
-				for(int i = 0; i < str_num.length(); i++)
+				number = cin.next();
+				num = Integer.parseInt(number);
+				if(num < 0)
 				{
-					if(dot == str_num.charAt(i) || negative == str_num.charAt(i))
-					{
-						limit++;
-						if(limit < 2)
-						{
-							System.out.println("Input Error!");
-						}
-					}
+					System.out.println("Input must be a positive integer");
 				}
-				if(limit == 0)
+				else
 				{
 					cond = false;
 				}
 			}
 		}
-		public static void printSum()
+		public static void sumDigits()
 		{
-			num = Integer.parseInt(str_num);
-			temp = num;
 			while(num > 0)
 			{
-				//System.out.println("Inside while");
 				sum += num % 10;
 				num /= 10;
 			}
-			System.out.println("The sum of the digits of " + temp + " is " +  sum);
-		}
-	}
-	
-	public static class Ex_1_v2 
-	{
-		static String str_num;
-		static double num = 0, orig = 0;
-		static int temp = 0, sum = 0;
-		public static void main()
-		{
-			System.out.println("\nVersion 2");
-			readinNum();
-			printSum();
-		}
-		public static void readinNum()
-		{
-			System.out.println("Enter any real number including negative decimals:");
-			System.out.print(">>");
-			num = cin.nextDouble();
 		}
 		public static void printSum()
 		{
-			orig = num;
-			num  = Math.abs(num);
-			
-			//save temp as digits left of decimal
-			temp = (int) num;
-			//save num as digits right of decimal
-			num -= temp;
-			
-			//change num so that it is a whole number
-			str_num = Double.toString(num);
-			int index = str_num.indexOf(".");
-			int count = 0;
-			for(int i = index + 1; i < str_num.length(); i++)
-			{
-				count++;
-			}
-			while(count > 0)
-			{
-				num *= 10;
-				count--;
-			}
-			
-			//find sum
-			while(temp > 0 || num > 0)
-			{
-				sum += num % 10;
-				sum += temp % 10;
-				
-				num /= 10;
-				temp /= 10;
-			}
-			System.out.println("The sum of the digits of " + orig + " is " +  sum);
+			System.out.println("The sum of the digits in " + number + " is " + sum);
 		}
 	}
 	
 	public static class Ex_2
 	{
-		static String str_num;
-		static double num = 0, orig = 0;
-		static int temp = 0, avg = 0, numerator = 0, denominator = 0;
+		static String number;
+		static double num = 0, numerator = 0, denominator = 0, avg = 0;
 		public static void main()
 		{
 			printHeading(2);
 			readinNum();
-			printAverage();
+			avgDigits();
+			printAvg();
 		}
 		public static void readinNum()
 		{
-			System.out.println("Enter any real number including negative decimals:");
-			System.out.print(">>");
-			num = cin.nextDouble();
+			boolean cond = true;
+			while(cond)
+			{
+				System.out.println("Enter a positive integer");
+				System.out.print(">>");
+				number = cin.next();
+				num = Integer.parseInt(number);
+				if(num < 0)
+				{
+					System.out.println("Input must be a positive integer");
+				}
+				else
+				{
+					cond = false;
+				}
+			}
 		}
-		public static void printAverage()
+		public static void avgDigits()
 		{
-			orig = num;
-			num  = Math.abs(num);
-			
-			//save temp as digits left of decimal
-			temp = (int) num;
-			//save num as digits right of decimal
-			num -= temp;
-			
-			//change num so that it is a whole number
-			str_num = Double.toString(num);
-			int index = str_num.indexOf(".");
-			int count = 0;
-			for(int i = index + 1; i < str_num.length(); i++)
-			{
-				count++;
-			}
-			while(count > 0)
-			{
-				num *= 10;
-				count--;
-			}
-			
-			//find numerator
-			while(temp > 0 || num > 0)
+			while(num > 0)
 			{
 				numerator += num % 10;
-				denominator++;
-				numerator += temp % 10;
-				denominator++;
-				
 				num /= 10;
-				temp /= 10;
+				denominator++;
 			}
-			
-			//find average
 			avg = numerator/denominator;
-			System.out.println("The average of the digits of " + orig + " is " +  avg);
+		}
+		public static void printAvg()
+		{
+			System.out.println("The average of the digits in " + number + " is " + avg);
 		}
 	}
 	public static class Ex_3
 	{
-		static String str, newline;
+		static String number;
+		static int num = 0, rev = 0;
 		public static void main()
 		{
 			printHeading(3);
-			readinString();
-			printTriangle();
+			readinNum();
+			getReverse();
+			printRev();
 		}
-		public static void readinString()
+		public static void readinNum()
 		{
-			System.out.println("Enter any phrase:");
-			System.out.print(">>");
-			newline = cin.nextLine();
-			str = cin.nextLine();
-		}
-		public static void printTriangle()
-		{
-			for(int i = str.length(); i > 0 ; i--)
+			boolean cond = true;
+			while(cond)
 			{
-				System.out.println(str.substring(0,i));
+				System.out.println("Enter a positive integer");
+				System.out.print(">>");
+				number = cin.next();
+				num = Integer.parseInt(number);
+				if(num < 0)
+				{
+					System.out.println("Input must be a positive integer");
+				}
+				else
+				{
+					cond = false;
+				}
 			}
+		}
+		public static void getReverse()
+		{
+			while(num > 0)
+			{
+				rev *= 10;
+				rev += num % 10;
+				num /= 10;
+			}
+		}
+		public static void printRev()
+		{
+			System.out.println("The sum of the digits in " + number + " is " + rev);
 		}
 	}
 	public static class Ex_4
 	{
-		static double slope = 0, y_intercept = 0;
-		static int table_size = 0;
+		static String sentence, newline;
+		//static Vector<int> index_vector = new Vector();
+		static int begin = 0, new_index = 0;
 		public static void main()
 		{
 			printHeading(4);
-			readinSlope();
-			readinYintercept();
-			readinSize();
-			printTable();
+			readinSentence();
+			printSentence();
 		}
-		public static void readinSlope()
+		public static void readinSentence()
 		{
-			System.out.println("Enter the slope:");
+			System.out.println("Enter any phrase/sentence:");
 			System.out.print(">>");
-			slope = cin.nextDouble();
+			newline = cin.nextLine();
+			sentence = cin.nextLine();
 		}
-		public static void readinYintercept()
+		public static void printSentence()
 		{
-			System.out.println("Enter the y-intercept:");
-			System.out.print(">>");
-			y_intercept = cin.nextDouble();
-		}
-		public static void readinSize()
-		{
-			Boolean incorrect = true;
-			while(incorrect)
+			new_index = sentence.indexOf('a');
+			while(new_index >= 0)
 			{
-				System.out.println("Enter size of table:");
-				System.out.print(">>");
-				table_size = cin.nextInt();
-				if(table_size > 0)
-				{
-					incorrect = false;
-				}
-				else if(table_size < 1)
-				{
-					System.out.println(table_size + " is not a positive integer.");
-				}
+				begin = sentence.indexOf('a') + 1;
+				sentence = sentence.substring(0, sentence.indexOf('a')) + "@" + sentence.substring(begin, sentence.length());
+				new_index = sentence.indexOf('a');
 			}
-		}
-		public static void printTable()
-		{
-			System.out.println("x  |  y");
-			for(int i = 0; i < table_size; i++)
-			{
-				if(i == 0)
-				{
-					System.out.println(i + "  |  " + y_intercept);
-				}
-				else
-				{
-					System.out.println(i + "  |  " + ((i*slope)+y_intercept));
-				}
-			}
+			System.out.println(sentence);
 		}
 	
 	}

@@ -76,7 +76,8 @@ public class Lab_7
 	public static class Ex_2
 	{
 		static String number;
-		static double num = 0, numerator = 0, denominator = 0, avg = 0;
+		static int num1 = 0;
+		static double num2 = 0, numerator = 0, denominator = 0, avg = 0;
 		public static void main()
 		{
 			printHeading(2);
@@ -92,8 +93,10 @@ public class Lab_7
 				System.out.println("Enter a positive integer");
 				System.out.print(">>");
 				number = cin.next();
-				num = Integer.parseInt(number);
-				if(num < 0)
+				
+				num1 = Integer.parseInt(number);
+				//System.out.println("num: " + num);
+				if(num1 < 0)
 				{
 					System.out.println("Input must be a positive integer");
 				}
@@ -105,12 +108,15 @@ public class Lab_7
 		}
 		public static void avgDigits()
 		{
-			while(num > 0)
+			while(num1 > 0)
 			{
-				numerator += num % 10;
-				num /= 10;
-				denominator++;
+				num2 = (double) (num1 % 10);
+				numerator += num2;
+				num1 /= 10;
 			}
+			denominator = number.length();
+			/*System.out.println("numer: " + numerator);
+			System.out.println("deno: " + denominator);*/
 			avg = numerator/denominator;
 		}
 		public static void printAvg()

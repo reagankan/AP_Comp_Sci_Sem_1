@@ -16,17 +16,15 @@ public class Lab_8
 		System.out.println("Lab 8");
 		
 		create_exercise_name();
-		/*
+		
 		Ex_1 one = new Ex_1();
 		one.main();
 		
 		Ex_2 two = new Ex_2();
 		two.main();
-	*/
+	
 		Ex_3 three = new Ex_3();
 		three.main();
-		
-		System.exit(0);
 		
 		Ex_4 four = new Ex_4();
 		four.main();
@@ -65,7 +63,7 @@ public class Lab_8
 		public static void print7()
 		{
 			System.out.println("\n1. Recursion...");
-			System.out.println("<<"+sentence);
+			System.out.println(sentence);
 		}
 		
 		/*public static void replacePrint()
@@ -152,7 +150,7 @@ public class Lab_8
 			System.out.print(">>");
 			number = cin.nextInt();
 			
-			System.out.println(luck(number));
+			System.out.println("There are "+luck(number)+", '7's in "+number);
 		}
 		public static int luck(int num)
 		{
@@ -175,34 +173,33 @@ public class Lab_8
 	}
 	public static class Ex_4
 	{
-		static String sentence, newline;
-		//static Vector<int> index_vector = new Vector();
-		static int begin = 0, new_index = 0;
 		public static void main()
 		{
 			printHeading(4);
-			readinSentence();
-			printSentence();
+			
+			String word;
+			int start = 0, stop = 0;
+			word = readinWord();
+			stop = word.length();
+			printTriangle(word, start, stop);
 		}
-		public static void readinSentence()
+		public static String readinWord()
 		{
-			System.out.println("Enter any phrase/sentence:");
+			String input;
+			System.out.println("Enter a single word:");
 			System.out.print(">>");
-			newline = cin.nextLine();
-			sentence = cin.nextLine();
+			input = cin.next();
+			return input;
 		}
-		public static void printSentence()
+		public static void printTriangle(String word, int start, int stop)
 		{
-			new_index = sentence.indexOf('a');
-			while(new_index >= 0)
+			if(start <= stop)
 			{
-				begin = sentence.indexOf('a') + 1;
-				sentence = sentence.substring(0, sentence.indexOf('a')) + "@" + sentence.substring(begin, sentence.length());
-				new_index = sentence.indexOf('a');
+				System.out.printf("%10s", word.substring(0, start) + "\n");
+				start++;
+				printTriangle(word,start,stop);
 			}
-			System.out.println(sentence);
 		}
-	
 	}
 	public static void create_exercise_name()
 	{

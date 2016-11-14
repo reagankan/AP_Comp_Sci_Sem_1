@@ -191,14 +191,15 @@ public class Lab_8
 			input = cin.next();
 			return input;
 		}
-		public static void printTriangle(String word, int start, int stop)
+		public static String printTriangle(String word, int start, int stop)
 		{
 			if(start <= stop)
 			{
-				System.out.printf("%10s", word.substring(0, start) + "\n");
+				System.out.printf("%20s\n", word.substring(0, start));
 				start++;
 				printTriangle(word,start,stop);
 			}
+			return "";
 		}
 	}
 	public static void create_exercise_name()

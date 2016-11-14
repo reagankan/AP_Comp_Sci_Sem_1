@@ -165,7 +165,7 @@ public class Lab_7
 		}
 		public static void printRev()
 		{
-			System.out.println("The sum of the digits in " + number + " is " + rev);
+			System.out.println("The reverse of " + number + " is " + rev);
 		}
 	}
 	public static class Ex_4

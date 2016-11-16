@@ -16,7 +16,7 @@ public class Lab_8
 		System.out.println("Lab 8");
 		
 		create_exercise_name();
-		
+		/*
 		Ex_1 one = new Ex_1();
 		one.main();
 		
@@ -25,7 +25,7 @@ public class Lab_8
 	
 		Ex_3 three = new Ex_3();
 		three.main();
-		
+	*/
 		Ex_4 four = new Ex_4();
 		four.main();
 	}	
@@ -195,7 +195,10 @@ public class Lab_8
 		{
 			if(start <= stop)
 			{
-				System.out.printf("%20s\n", word.substring(0, start));
+				//System.out.printf("%20s\n", word.substring(0, start));
+				//System.out.println("\t\t\t"+word.substring(0, start));
+				System.out.printf("%15s %n", word.substring(0, start));
+				
 				start++;
 				printTriangle(word,start,stop);
 			}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import static java.lang.Math.pow;
 import static java.lang.Math.abs;
+import java.util.concurrent.TimeUnit;
 
 public class Lab_9
 {
@@ -14,31 +15,37 @@ public class Lab_9
 	static Vector<String> exercise_name = new Vector<String>();
 	public static void main(String[]args)
 	{
-		System.out.println("Lab 9");
-		
+		cout("Lab_9");
 		create_exercise_name();
-/*
+
 		Ex_1 one = new Ex_1();
 		one.main();
+		pause(5);
 		
 		Ex_2 two = new Ex_2();
-		two.main();
+		two.main();	
+	
+		pause(5);
 	
 		Ex_3 three = new Ex_3();
 		three.main();
 
+		pause(5);
+		
 		Ex_4 four = new Ex_4();
 		four.main();
-		*/
+		pause(5);
 		
-		System.out.println("Lab 9.1");
+		cout("Lab_9.1");
 		
 		Ex_5 five = new Ex_5();
 		five.main();
+		pause(5);
 		
 		Ex_6 six = new Ex_6();
 		six.main();
-
+		pause(5);
+		
 		Ex_7 seven = new Ex_7();
 		seven.main();
 	}	
@@ -327,12 +334,54 @@ public class Lab_9
 	}
 	public static class Ex_6
 	{
-		public static final int NUM_WORDS = 5;
-		static String[] words = new String[NUM_WORDS];
+		public static final int ARRAY_SIZE = 10;
+		static int[] numbers = new int[ARRAY_SIZE];
 		public static void main()
 		{
 			printHeading(6);
+			createNumbers();
+			printNumbers();
+			printLargest();
 		}
+		public static void createNumbers()
+		{
+			for(int i = 0; i < ARRAY_SIZE; i++)
+			{
+				numbers[i] = random.nextInt(101); //random int from 1-100
+			}
+		}
+		public static void printNumbers()
+		{
+			System.out.print("The following is a list of 10 randomly generated integers: ");
+			int count = 0;
+			for(int num : numbers)
+			{
+				count++;
+				System.out.print(num);
+				if(count < ARRAY_SIZE)
+				{
+					System.out.print(", ");
+				}
+				else
+				{
+					System.out.print(".");
+					endl();
+				}
+			}
+		}
+		public static void printLargest()
+		{
+			int max = 0;
+			for(int num : numbers)
+			{
+				if(max < num)
+				{
+					max = num;
+				}
+			}
+			System.out.println("The largest number in the list above is: " + max);
+		}
+		
 	}
 	public static class Ex_7
 	{
@@ -341,6 +390,49 @@ public class Lab_9
 		public static void main()
 		{
 			printHeading(7);
+			generateWords();
+			printZWords();
+		}
+		public static void generateWords()
+		{
+			String newline;
+			/*for(String wrd : words)
+			{
+				System.out.println("Enter a word/phrase:");
+				System.out.print(">>");
+				wrd = cin.nextLine();
+			}*/
+			for(int i = 0; i < words.length; i++)
+			{
+				System.out.println("Enter a word/phrase:");
+				System.out.print(">>");
+				if(i == 0)
+				{
+					newline = cin.nextLine();
+				}
+				words[i] = cin.nextLine();
+			}
+		}
+		public static boolean hasZs(String wrd)
+		{
+			boolean z = false;
+			if(wrd.indexOf("z") != -1 || wrd.indexOf("Z") != -1)
+			{
+				z = true;
+			}
+			return z;
+		}
+		public static void printZWords()
+		{
+			System.out.println("The following word(s) contain(s) the letter 'z':");
+			for(String wrd : words)
+			{
+				if(hasZs(wrd))
+				{
+					System.out.printf("*%10s", wrd);
+					endl();
+				}
+			}
 		}
 	}
 	public static void create_exercise_name()
@@ -363,5 +455,40 @@ public class Lab_9
 	public static void endl()
 	{
 		System.out.println();
+	}
+	public static void msleep(int milli)
+	{
+		try{
+			TimeUnit.MILLISECONDS.sleep(milli);
+		} catch(InterruptedException ex){
+			//do nothing
+		}
+	}
+	public static void pause(int sec)
+	{
+		System.out.print("Moving on in: ");
+		for(int i = sec; i >= 1; i--)
+		{
+			System.out.print(i);
+			cout1("...");
+			msleep(1000);
+		}
+	}
+	public static void cout1(String str)
+	{
+		for(int i = 0; i < str.length(); i++)
+		{
+			System.out.print(str.charAt(i));
+			msleep(250);
+		}
+	}
+	public static void cout(String str)
+	{
+		for(int i = 0; i < str.length(); i++)
+		{
+			System.out.print(str.charAt(i));
+			msleep(250);
+		}
+		endl();
 	}
 }

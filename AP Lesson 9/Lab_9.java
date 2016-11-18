@@ -17,7 +17,7 @@ public class Lab_9
 		System.out.println("Lab 9");
 		
 		create_exercise_name();
-
+/*
 		Ex_1 one = new Ex_1();
 		one.main();
 		
@@ -29,6 +29,18 @@ public class Lab_9
 
 		Ex_4 four = new Ex_4();
 		four.main();
+		*/
+		
+		System.out.println("Lab 9.1");
+		
+		Ex_5 five = new Ex_5();
+		five.main();
+		
+		Ex_6 six = new Ex_6();
+		six.main();
+
+		Ex_7 seven = new Ex_7();
+		seven.main();
 	}	
 	public static class Ex_1
 	{
@@ -212,12 +224,135 @@ public class Lab_9
 			}
 		}
 	}
+	public static class Ex_5
+	{
+		public static final int ARRAY_SIZE = 10;
+		static int[] numbers = new int[ARRAY_SIZE];
+		static boolean[] isOdd = new boolean[ARRAY_SIZE];
+		public static void main()
+		{
+			String[] output = new String[ARRAY_SIZE];
+			printHeading(5);
+			createArray();
+			printNumbers();
+			output = getOdds();
+			printOdds(output);
+		}
+		public static void createArray()
+		{
+			for(int i = 0; i < ARRAY_SIZE; i++)
+			{
+				numbers[i] = random.nextInt(101); //random int from 1-100
+			}
+		}
+		public static void printNumbers()
+		{
+			System.out.print("The following is a list of 10 randomly generated integers: ");
+			int count = 0;
+			for(int num : numbers)
+			{
+				count++;
+				System.out.print(num);
+				if(count < ARRAY_SIZE)
+				{
+					System.out.print(", ");
+				}
+				else
+				{
+					System.out.print(".");
+					endl();
+				}
+			}
+		}
+		public static boolean isOdd(int num)
+		{
+			return num % 2 == 1;
+		}
+		public static String[] getOdds()
+		{
+			int counter = 0;
+			for(int num : numbers)
+			{
+				if(isOdd(num))
+				{
+					isOdd[counter] = true;
+				}
+				else
+				{
+					isOdd[counter] = false;
+				}
+				counter++;
+			}
+			
+			int num_odd = 0;
+			for(boolean cond : isOdd)
+			{
+				if(cond)
+				{
+					num_odd++;
+				}
+			}
+			String[] odd_num = new String[num_odd];
+			int iter = 0;
+			for(int i = 0; i < isOdd.length; i++)
+			{
+				if(isOdd[i])
+				{
+					//System.out.println("odd num iter: " + iter + "\tisOdd iter: " + i);
+					odd_num[iter] = Integer.toString(numbers[i]);
+					iter++;
+				}
+			}
+		return odd_num;
+		}
+		public static void printOdds(String[] odd_num)
+		{
+			System.out.print("The following is a list of all the odd numbers from the previous list: ");
+			int count = 0;
+			for(String num : odd_num)
+			{
+				count++;
+				System.out.print(num);
+				if(count < odd_num.length)
+				{
+					System.out.print(", ");
+				}
+				else
+				{
+					System.out.print(".");
+					endl();
+				}
+			}
+		}
+	}
+	public static class Ex_6
+	{
+		public static final int NUM_WORDS = 5;
+		static String[] words = new String[NUM_WORDS];
+		public static void main()
+		{
+			printHeading(6);
+		}
+	}
+	public static class Ex_7
+	{
+		public static final int NUM_WORDS = 5;
+		static String[] words = new String[NUM_WORDS];
+		public static void main()
+		{
+			printHeading(7);
+		}
+	}
 	public static void create_exercise_name()
 	{
 		exercise_name.add("Reverse Word");
 		exercise_name.add("First Letter");
 		exercise_name.add("Average Numbers");
 		exercise_name.add("Fibonacci Sequence");
+		exercise_name.add("Get Odds");
+		exercise_name.add("Biggest Number");
+		exercise_name.add("Find The Zs");
+
 	}
 	public static void printHeading(int num)
 	{

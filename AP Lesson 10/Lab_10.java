@@ -16,18 +16,15 @@ public class Lab_10
 	static Vector<String> exercise_name = new Vector<String>();
 	public static void main(String[]args)
 	{
-		cout("Lab_10");
+		System.out.println("Lab_10");
 		create_exercise_name();
-
+/*
 		Ex_1 one = new Ex_1();
 		one.main();
-		System.exit(0);
 		pause(5);
-		
+		*/
 		Ex_2 two = new Ex_2();
 		two.main();	
-	
-		pause(5);
 	}	
 	public static class Ex_1
 	{
@@ -58,7 +55,7 @@ public class Lab_10
 		{
 			for(int j = 2; j < n; j++)
 			{
-				if(n%j == 0)
+				if(n%j == 0)//composite
 				{
 					return 1;
 				}
@@ -70,7 +67,7 @@ public class Lab_10
 			ArrayList<Integer> output = new ArrayList<Integer>();
 			for(int i = 0; i < nums.size(); i++)
 			{
-				if(gFactor(i) == 0)
+				if(gFactor(nums.get(i)) == 0)
 				{
 					System.out.println("Removing: " + nums.get(i));
 					nums.remove(i);
@@ -83,29 +80,203 @@ public class Lab_10
 	
 	public static class Ex_2
 	{
-		public static final int NUM_WORDS = 5;
-		static String[] words = new String[NUM_WORDS];
+		static String readin_expr;
 		public static void main()
 		{
 			printHeading(2);
-			readinArray();
-			printFirst();
+			readinExpression();
+			
+			//readin_expr to array called temp
+			String[] temp = readin_expr.split(" ");
+			//array temp to ArrayList<String>
+			ArrayList<String> expression = new ArrayList<String>(Arrays.asList(temp));
+			calcExpression(expression);
 		}
-		public static void readinArray()
+		public static void readinExpression()
 		{
-			for(int i = 0; i < NUM_WORDS; i++)
-			{
-				System.out.println("Enter any word or phrase:");
-				System.out.print(">>");
-				words[i] = cin.nextLine();
-			}
+			System.out.println("Enter a mathematical expression(Ex: 1 + 1):");
+			System.out.print(">>");
+			readin_expr = cin.nextLine();
 		}
-		public static void printFirst()
+		
+		//LOGIC
+		//BEFORE
+		/*	index: 0   1   2  */
+		/*  value: 5   /   3  */
+		//CALC	
+		/*	index:  0      1        2     */
+		/*  value: 5/3   erase    erase   */
+		//AFTER
+		/*	index:   0   */
+		/*  value: 1.66  */
+		public static void calcExpression(ArrayList<String> expr)
 		{
-			for(String phrase : words)
+			//Operation Precedence follows PEMDAS
+
+			//search ^
+			boolean Pow = true;
+			while(Pow)
 			{
-				System.out.println("1st letter in " + phrase + " is " + phrase.charAt(0) + ".");
+				int count = 0;
+				int i = 0;
+				while(i < expr.size())//go thru expr once
+				{
+					if(expr.get(i).equals("^"))  
+					{
+						System.out.println("Power");
+						double op1 = Double.parseDouble(expr.get(i-1));
+						double op2 = Double.parseDouble(expr.get(i+1));
+						System.out.println("op1: " + op1);
+						System.out.println("op2: " + op2);
+						expr.set(i-1, Double.toString(Math.pow(op1,op2)));
+						expr.remove(i);
+						expr.remove(i);
+						count++;
+					}
+					else{
+						i++;
+					}
+				}
+				if(count == 0)
+				{
+					Pow = false;
+				}
 			}
+			//search * and /
+			boolean multDiv = true;
+			while(multDiv)
+			{
+				int count = 0;
+				int i = 0;
+				while(i < expr.size())//go thru expr once
+				{
+					if(expr.get(i).equals("*"))  
+					{
+						System.out.println("Mult");
+						double op1 = Double.parseDouble(expr.get(i-1));
+						double op2 = Double.parseDouble(expr.get(i+1));
+						System.out.println("op1: " + op1);
+						System.out.println("op2: " + op2);
+						expr.set(i-1, Double.toString(op1*op2));
+						expr.remove(i);
+						expr.remove(i);
+						count++;
+					}
+					else if(expr.get(i).equals("/"))  
+					{
+						System.out.println("Mult");
+						double op1 = Double.parseDouble(expr.get(i-1));
+						double op2 = Double.parseDouble(expr.get(i+1));
+						System.out.println("op1: " + op1);
+						System.out.println("op2: " + op2);
+						expr.set(i-1, Double.toString(op1/op2));
+						expr.remove(i);
+						expr.remove(i);
+						count++;
+					}
+					else{
+						i++;
+					}
+				}
+				if(count == 0)
+				{
+					multDiv = false;
+				}
+			}
+			
+			
+			
+			/*
+			//check for/do ^ operations
+			while(expr.size() != 1)
+			{
+				
+				
+				int i = 0;
+				while(i < expr.size())
+				{
+					if(expr.get(i).equals("^"))  
+					{
+						System.out.println("Power");
+						double op1 = Double.parseDouble(expr.get(i-1));
+						double op2 = Double.parseDouble(expr.get(i+1));
+						System.out.println("op1: " + op1);
+						System.out.println("op2: " + op2);
+						expr.set(i-1, Double.toString(Math.pow(op1,op2)));
+						expr.remove(i);
+						expr.remove(i);
+					}
+					else if(expr.get(i).equals("*"))  
+					{
+						System.out.println("Multiplying");
+						double op1 = Double.parseDouble(expr.get(i-1));
+						double op2 = Double.parseDouble(expr.get(i+1));
+						System.out.println("op1: " + op1);
+						System.out.println("op2: " + op2);
+						expr.set(i-1, Double.toString(op1 * op2));
+						expr.remove(i);
+						expr.remove(i);
+					}
+					else if(expr.get(i).equals("/"))
+					{
+						System.out.println("Dividing");
+						double op1 = Double.parseDouble(expr.get(i-1));
+						double op2 = Double.parseDouble(expr.get(i+1));
+						System.out.println("op1: " + op1);
+						System.out.println("op2: " + op2);
+						expr.set(i-1, Double.toString(op1 / op2));
+						expr.remove(i);
+						expr.remove(i);
+					}
+					else if(expr.get(i).equals("+"))  
+					{
+						System.out.println("Adding");
+						double op1 = Double.parseDouble(expr.get(i-1));
+						double op2 = Double.parseDouble(expr.get(i+1));
+						System.out.println("op1: " + op1);
+						System.out.println("op2: " + op2);
+						expr.set(i-1, Double.toString(op1 + op2));
+						expr.remove(i);
+						expr.remove(i);
+					}
+					else if(expr.get(i).equals("-"))
+					{
+						System.out.println("Subtracting");
+						double op1 = Double.parseDouble(expr.get(i-1));
+						double op2 = Double.parseDouble(expr.get(i+1));
+						System.out.println("op1: " + op1);
+						System.out.println("op2: " + op2);
+						expr.set(i-1, Double.toString(op1 - op2));
+						expr.remove(i);
+						expr.remove(i);
+					}
+					else
+					{
+						i++;
+					}
+				}
+				//check for/do * & / operations 
+				/*i = 0;
+				while(i < expr.size())
+				{
+					
+					else
+					{
+						i++;
+					}
+				}
+				//check for/do + & - operations
+				i = 0;
+				while(i < expr.size())
+				{
+					
+					else
+					{
+						i++;
+					}
+				}
+			}*/
+			System.out.println("Solution: " + expr.get(0));	
 		}
 	}
 	

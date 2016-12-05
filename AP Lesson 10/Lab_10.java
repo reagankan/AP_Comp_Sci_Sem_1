@@ -18,11 +18,11 @@ public class Lab_10
 	{
 		System.out.println("Lab_10");
 		create_exercise_name();
-/*
+
 		Ex_1 one = new Ex_1();
 		one.main();
 		pause(5);
-		*/
+		
 		Ex_2 two = new Ex_2();
 		two.main();	
 	}	
@@ -36,7 +36,7 @@ public class Lab_10
 			nums = removePrimes(nums);
 			
 			
-			System.out.println("All Numbers");
+			System.out.println("from the set of the following numbers...");
 			for(int elem : numbers)
 			{
 				System.out.print(elem + " ");
@@ -94,7 +94,7 @@ public class Lab_10
 		}
 		public static void readinExpression()
 		{
-			System.out.println("Enter a mathematical expression(Ex: 1 + 1):");
+			System.out.println("Enter a mathematical expression(Ex: 1 + 1, notice the spaces):");
 			System.out.print(">>");
 			readin_expr = cin.nextLine();
 		}
@@ -110,173 +110,90 @@ public class Lab_10
 		/*	index:   0   */
 		/*  value: 1.66  */
 		public static void calcExpression(ArrayList<String> expr)
-		{
-			//Operation Precedence follows PEMDAS
-
-			//search ^
-			boolean Pow = true;
-			while(Pow)
-			{
-				int count = 0;
-				int i = 0;
-				while(i < expr.size())//go thru expr once
-				{
-					if(expr.get(i).equals("^"))  
-					{
-						System.out.println("Power");
-						double op1 = Double.parseDouble(expr.get(i-1));
-						double op2 = Double.parseDouble(expr.get(i+1));
-						System.out.println("op1: " + op1);
-						System.out.println("op2: " + op2);
-						expr.set(i-1, Double.toString(Math.pow(op1,op2)));
-						expr.remove(i);
-						expr.remove(i);
-						count++;
-					}
-					else{
-						i++;
-					}
-				}
-				if(count == 0)
-				{
-					Pow = false;
-				}
-			}
-			//search * and /
-			boolean multDiv = true;
-			while(multDiv)
-			{
-				int count = 0;
-				int i = 0;
-				while(i < expr.size())//go thru expr once
-				{
-					if(expr.get(i).equals("*"))  
-					{
-						System.out.println("Mult");
-						double op1 = Double.parseDouble(expr.get(i-1));
-						double op2 = Double.parseDouble(expr.get(i+1));
-						System.out.println("op1: " + op1);
-						System.out.println("op2: " + op2);
-						expr.set(i-1, Double.toString(op1*op2));
-						expr.remove(i);
-						expr.remove(i);
-						count++;
-					}
-					else if(expr.get(i).equals("/"))  
-					{
-						System.out.println("Mult");
-						double op1 = Double.parseDouble(expr.get(i-1));
-						double op2 = Double.parseDouble(expr.get(i+1));
-						System.out.println("op1: " + op1);
-						System.out.println("op2: " + op2);
-						expr.set(i-1, Double.toString(op1/op2));
-						expr.remove(i);
-						expr.remove(i);
-						count++;
-					}
-					else{
-						i++;
-					}
-				}
-				if(count == 0)
-				{
-					multDiv = false;
-				}
-			}
-			
-			
-			
-			/*
-			//check for/do ^ operations
+		{	
 			while(expr.size() != 1)
 			{
-				
-				
+				int ii = 0;
+				while(ii < expr.size())
+				{
+					if(expr.get(ii).equals("^"))  
+					{
+						//System.out.println("Multiplying");
+						double op1 = Double.parseDouble(expr.get(ii-1));
+						double op2 = Double.parseDouble(expr.get(ii+1));
+						//System.out.println("op1: " + op1);
+						//System.out.println("op2: " + op2);
+						expr.set(ii, Double.toString(Math.pow(op1,op2)));
+						expr.remove(ii-1);
+						expr.remove(ii);
+					}
+					ii++;
+				}
 				int i = 0;
 				while(i < expr.size())
 				{
-					if(expr.get(i).equals("^"))  
+					if(expr.get(i).equals("*") || expr.get(i).equals("/"))  
 					{
-						System.out.println("Power");
-						double op1 = Double.parseDouble(expr.get(i-1));
-						double op2 = Double.parseDouble(expr.get(i+1));
-						System.out.println("op1: " + op1);
-						System.out.println("op2: " + op2);
-						expr.set(i-1, Double.toString(Math.pow(op1,op2)));
-						expr.remove(i);
-						expr.remove(i);
+						if(expr.get(i).equals("*"))  
+						{
+							//System.out.println("Multiplying");
+							double op1 = Double.parseDouble(expr.get(i-1));
+							double op2 = Double.parseDouble(expr.get(i+1));
+							//System.out.println("op1: " + op1);
+							//System.out.println("op2: " + op2);
+							expr.set(i, Double.toString(op1 * op2));
+							expr.remove(i-1);
+							expr.remove(i);
+						}
+						else if(expr.get(i).equals("/"))
+						{
+							//System.out.println("Dividing");
+							double op1 = Double.parseDouble(expr.get(i-1));
+							double op2 = Double.parseDouble(expr.get(i+1));
+							//System.out.println("op1: " + op1);
+							//System.out.println("op2: " + op2);
+							expr.set(i, Double.toString(op1 / op2));
+							expr.remove(i-1);
+							expr.remove(i);
+						}
 					}
-					else if(expr.get(i).equals("*"))  
-					{
-						System.out.println("Multiplying");
-						double op1 = Double.parseDouble(expr.get(i-1));
-						double op2 = Double.parseDouble(expr.get(i+1));
-						System.out.println("op1: " + op1);
-						System.out.println("op2: " + op2);
-						expr.set(i-1, Double.toString(op1 * op2));
-						expr.remove(i);
-						expr.remove(i);
-					}
-					else if(expr.get(i).equals("/"))
-					{
-						System.out.println("Dividing");
-						double op1 = Double.parseDouble(expr.get(i-1));
-						double op2 = Double.parseDouble(expr.get(i+1));
-						System.out.println("op1: " + op1);
-						System.out.println("op2: " + op2);
-						expr.set(i-1, Double.toString(op1 / op2));
-						expr.remove(i);
-						expr.remove(i);
-					}
-					else if(expr.get(i).equals("+"))  
-					{
-						System.out.println("Adding");
-						double op1 = Double.parseDouble(expr.get(i-1));
-						double op2 = Double.parseDouble(expr.get(i+1));
-						System.out.println("op1: " + op1);
-						System.out.println("op2: " + op2);
-						expr.set(i-1, Double.toString(op1 + op2));
-						expr.remove(i);
-						expr.remove(i);
-					}
-					else if(expr.get(i).equals("-"))
-					{
-						System.out.println("Subtracting");
-						double op1 = Double.parseDouble(expr.get(i-1));
-						double op2 = Double.parseDouble(expr.get(i+1));
-						System.out.println("op1: " + op1);
-						System.out.println("op2: " + op2);
-						expr.set(i-1, Double.toString(op1 - op2));
-						expr.remove(i);
-						expr.remove(i);
-					}
-					else
-					{
-						i++;
-					}
-				}
-				//check for/do * & / operations 
-				/*i = 0;
-				while(i < expr.size())
+					i++;
+				}		
+				int j = 0;
+				while(j < expr.size())
 				{
-					
-					else
+					if(expr.get(j).equals("+") || expr.get(j).equals("-"))  
 					{
-						i++;
+						if(expr.get(j).equals("+"))  
+						{
+							//System.out.println("Adding");
+							double op1 = Double.parseDouble(expr.get(j-1));
+							double op2 = Double.parseDouble(expr.get(j+1));
+							//System.out.println("op1: " + op1);
+							//System.out.println("op2: " + op2);
+							expr.set(j, Double.toString(op1 + op2));
+							expr.remove(j-1);
+							expr.remove(j);
+						}
+						else if(expr.get(j).equals("-"))
+						{
+							//System.out.println("Subtracting");
+							double op1 = Double.parseDouble(expr.get(j-1));
+							double op2 = Double.parseDouble(expr.get(j+1));
+							//System.out.println("op1: " + op1);
+							//System.out.println("op2: " + op2);
+							expr.set(j, Double.toString(op1 - op2));
+							expr.remove(j-1);
+							expr.remove(j);
+						}
 					}
+					j++;
 				}
-				//check for/do + & - operations
-				i = 0;
-				while(i < expr.size())
-				{
-					
-					else
-					{
-						i++;
-					}
-				}
-			}*/
-			System.out.println("Solution: " + expr.get(0));	
+			}
+			for(int ans = 0; ans < expr.size(); ans++)
+			{
+				System.out.println("Solution: " + expr.get(ans));	
+			}
 		}
 	}
 	

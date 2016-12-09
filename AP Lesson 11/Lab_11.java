@@ -68,9 +68,11 @@ public class Lab_11
 
 			  if(k < n)
 
+				  return greatestCommonFactor(k, n - k);
 
 			  else
 
+				  return greatestCommonFactor(k-n, n);
 		}
 	}
 	

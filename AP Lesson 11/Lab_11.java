@@ -41,6 +41,7 @@ public class Lab_11
 		public static void main()
 		{
 			printHeading(1);
+			//System.out.println(greatestCommonFactor(15, 6));
 			int[][] nums = new int[4][4];
 			for(int i = 0; i < 4; i++)
 			{
@@ -57,6 +58,19 @@ public class Lab_11
 				}
 			}
 			endl();
+		}
+		public static int greatestCommonFactor(int k, int n)
+		{
+		  if(k == n)
+
+			  return k;
+		   else
+
+			  if(k < n)
+
+
+			  else
+
 		}
 	}
 	

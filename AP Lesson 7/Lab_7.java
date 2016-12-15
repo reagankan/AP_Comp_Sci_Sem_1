@@ -195,6 +195,13 @@ public class Lab_7
 				sentence = sentence.substring(0, sentence.indexOf('a')) + "@" + sentence.substring(begin, sentence.length());
 				new_index = sentence.indexOf('a');
 			}
+			new_index = sentence.indexOf('A');
+			while(new_index >= 0)
+			{
+				begin = sentence.indexOf('A') + 1;
+				sentence = sentence.substring(0, sentence.indexOf('A')) + "@" + sentence.substring(begin, sentence.length());
+				new_index = sentence.indexOf('A');
+			}
 			System.out.println(sentence);
 		}
 	

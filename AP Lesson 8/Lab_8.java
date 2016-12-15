@@ -16,7 +16,7 @@ public class Lab_8
 		System.out.println("Lab 8");
 		
 		create_exercise_name();
-		/*
+		
 		Ex_1 one = new Ex_1();
 		one.main();
 		
@@ -25,7 +25,7 @@ public class Lab_8
 	
 		Ex_3 three = new Ex_3();
 		three.main();
-	*/
+	
 		Ex_4 four = new Ex_4();
 		four.main();
 	}	
@@ -145,12 +145,24 @@ public class Lab_8
 			printHeading(3);
 			
 			int number = 0;
+			boolean isNeg = false;
 			
-			System.out.println("Enter a positive integer number:");
+			System.out.println("Enter an integer number:");
 			System.out.print(">>");
-			number = cin.nextInt();
-			
-			System.out.println("There are "+luck(number)+", '7's in "+number);
+			int orig_input = cin.nextInt();
+			if(orig_input < 0)
+			{
+				isNeg = true;
+			}
+			number = Math.abs(orig_input);
+			if(isNeg)
+			{
+				System.out.println("There are "+luck(number)+", '7's in -"+number);
+			}
+			else
+			{
+				System.out.println("There are "+luck(number)+", '7's in "+number);	
+			}
 		}
 		public static int luck(int num)
 		{

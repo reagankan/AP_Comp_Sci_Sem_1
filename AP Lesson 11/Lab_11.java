@@ -9,6 +9,21 @@ import java.util.Arrays;
 
 public class Lab_11
 {
+	static List<String> strList = new ArrayList<String>();
+
+	int elemNums = 2;
+	for(int i = 0; i < elemNums; i++)
+	{
+		System.out.println("Enter elem" + (i+1));
+		System.out.print(">>");
+		String newElem = cin.nextLine();
+		
+		System.out.println("Enter elem");
+		System.out.print(">>");
+		String newElem = cin.nextLine();
+		strList.add(newElem)
+	}
+	
 	//Instantiate Scanner class object
 	static Scanner cin = new Scanner(System.in);
 	//Instantiate Random class object
@@ -33,6 +48,15 @@ public class Lab_11
 		
 		Ex_4 four = new Ex_4();
 		four.main();	
+		
+		System.out.println("Lab_11.1");
+		Ex_5 five = new Ex_5();
+		five.main();
+		pause(5);
+		
+		Ex_6 six = new Ex_6();
+		six.main();	
+		pause(5);
 	}	
 	public static class Ex_1
 	{

@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class Lab_11
 {
-	static List<String> strList = new ArrayList<String>();
+	/*static List<String> strList = new ArrayList<String>();
 
 	int elemNums = 2;
 	for(int i = 0; i < elemNums; i++)
@@ -22,7 +22,7 @@ public class Lab_11
 		System.out.print(">>");
 		String newElem = cin.nextLine();
 		strList.add(newElem)
-	}
+	}*/
 	
 	//Instantiate Scanner class object
 	static Scanner cin = new Scanner(System.in);
@@ -34,7 +34,7 @@ public class Lab_11
 		System.out.println("Lab_11");
 		create_exercise_name();
 
-		Ex_1 one = new Ex_1();
+		/*Ex_1 one = new Ex_1();
 		one.main();
 		pause(5);
 		
@@ -52,11 +52,11 @@ public class Lab_11
 		System.out.println("Lab_11.1");
 		Ex_5 five = new Ex_5();
 		five.main();
-		pause(5);
-		
+		//pause(5);
+		*/
 		Ex_6 six = new Ex_6();
 		six.main();	
-		pause(5);
+
 	}	
 	public static class Ex_1
 	{
@@ -197,13 +197,122 @@ public class Lab_11
 			endl();
 		}
 	}
-	
+	public static class Ex_5
+	{
+		private final static int  CLIP_SIZE = 16, NUM_CLIPS = 6;
+		public static int shotsRemaining = 0, 
+						  bulletCount = 96;
+		public static String readin, action;
+		public static String[] clip = new String[CLIP_SIZE];
+		public static void main()
+		{
+			printHeading(5);
+			emptyClip();
+			printClip();
+			while(bulletCount != 0)
+			{
+				readinAction();
+				printClip();
+			}
+			System.out.println("============================");
+			System.out.println("Bullets: " + bulletCount);
+			//System.out.println("Shots left: " + shotsRemaining);
+			System.out.println("Out of Bullets!");
+		}
+		public static void readinAction()
+		{
+			System.out.println("Action(R or S):");
+			System.out.print(">>");
+			action = cin.nextLine();
+			if(action.equals("S") || action.equals("s"))
+			{
+				shoot();
+			}
+			else if(action.equals("R") || action.equals("r"))
+			{
+				reload();
+			}
+			else
+			{
+				readinAction();
+			}
+		}
+		/*
+		Update
+		shotsRemaining
+		bulletCount 
+		*/
+		public static void shoot()
+		{
+			if(shotsRemaining > 0)
+			{
+				System.out.println("BOOM!");
+				clip[shotsRemaining-1] = "[]";
+				shotsRemaining--;
+				bulletCount--;
+			}
+			else{
+				System.out.println("RELOAD!");
+			}
+			
+		}
+		public static int count = 0;
+		public static void reload()
+		{
+			
+			//System.out.println("bulletCount before fillClip: " + bulletCount);
+			emptyClip();
+			if(bulletCount != 16)
+			{
+				fillClip();
+			}
+			if(count != 0)
+			{
+				bulletCount -= shotsRemaining;
+			}
+			shotsRemaining = 16;
+			count++;
+		}
+		public static void emptyClip()
+		{
+			for(int i = 0; i < clip.length; i++)
+			{
+				clip[i] = "[]";
+			}
+		}
+		public static void fillClip()
+		{
+			for(int i = 0; i < clip.length; i++)
+			{
+				clip[i] = "*";
+			}
+		}
+		public static void printClip()
+		{
+			System.out.println("Bullets: " + bulletCount);
+			System.out.print("Clip: ");
+			for(String slot : clip)
+			{
+				System.out.print(slot+" ");
+			}
+			endl();
+		}
+	}
+	public static class Ex_6
+	{
+		public static void main()
+		{
+			printHeading(6);
+		}
+	}
 	public static void create_exercise_name()
 	{
 		exercise_name.add("Random Numbers");
 		exercise_name.add("Strings");
 		exercise_name.add("Xs and Os");
 		exercise_name.add("Divisor");
+		exercise_name.add("GameGun");
+		exercise_name.add("GameHealth");
 	}
 	public static void printHeading(int num)
 	{

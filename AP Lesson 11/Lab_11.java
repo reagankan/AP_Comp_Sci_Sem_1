@@ -9,21 +9,6 @@ import java.util.Arrays;
 
 public class Lab_11
 {
-	/*static List<String> strList = new ArrayList<String>();
-
-	int elemNums = 2;
-	for(int i = 0; i < elemNums; i++)
-	{
-		System.out.println("Enter elem" + (i+1));
-		System.out.print(">>");
-		String newElem = cin.nextLine();
-		
-		System.out.println("Enter elem");
-		System.out.print(">>");
-		String newElem = cin.nextLine();
-		strList.add(newElem)
-	}*/
-	
 	//Instantiate Scanner class object
 	static Scanner cin = new Scanner(System.in);
 	//Instantiate Random class object
@@ -34,7 +19,7 @@ public class Lab_11
 		System.out.println("Lab_11");
 		create_exercise_name();
 
-		/*Ex_1 one = new Ex_1();
+		Ex_1 one = new Ex_1();
 		one.main();
 		pause(5);
 		
@@ -52,8 +37,8 @@ public class Lab_11
 		System.out.println("Lab_11.1");
 		Ex_5 five = new Ex_5();
 		five.main();
-		//pause(5);
-		*/
+		pause(5);
+		
 		Ex_6 six = new Ex_6();
 		six.main();	
 
@@ -202,16 +187,18 @@ public class Lab_11
 		private final static int  CLIP_SIZE = 16, NUM_CLIPS = 6;
 		public static int shotsRemaining = 0, 
 						  bulletCount = 96;
-		public static String readin, action;
+		public static String readin, action, newline;
 		public static String[] clip = new String[CLIP_SIZE];
 		public static void main()
 		{
 			printHeading(5);
 			emptyClip();
 			printClip();
+			readinAction(true);
+			printClip();
 			while(bulletCount != 0)
 			{
-				readinAction();
+				readinAction(false);
 				printClip();
 			}
 			System.out.println("============================");
@@ -219,10 +206,14 @@ public class Lab_11
 			//System.out.println("Shots left: " + shotsRemaining);
 			System.out.println("Out of Bullets!");
 		}
-		public static void readinAction()
+		public static void readinAction(boolean skipFirst)
 		{
 			System.out.println("Action(R or S):");
 			System.out.print(">>");
+			if(skipFirst)
+			{
+				newline = cin.nextLine();
+			}
 			action = cin.nextLine();
 			if(action.equals("S") || action.equals("s"))
 			{
@@ -234,7 +225,7 @@ public class Lab_11
 			}
 			else
 			{
-				readinAction();
+				readinAction(false);
 			}
 		}
 		/*
@@ -247,19 +238,20 @@ public class Lab_11
 			if(shotsRemaining > 0)
 			{
 				System.out.println("BOOM!");
+				msleep(750);
 				clip[shotsRemaining-1] = "[]";
 				shotsRemaining--;
 				bulletCount--;
 			}
 			else{
 				System.out.println("RELOAD!");
+				msleep(750);
 			}
 			
 		}
 		public static int count = 0;
 		public static void reload()
 		{
-			
 			//System.out.println("bulletCount before fillClip: " + bulletCount);
 			emptyClip();
 			if(bulletCount != 16)
@@ -300,9 +292,75 @@ public class Lab_11
 	}
 	public static class Ex_6
 	{
+		private final static int HEALTH_LOAD = 6;
+		public static String turn = "";
+		public static int healthCount = HEALTH_LOAD, damage = 0, amount = 0;
+		public static String[] health = new String[HEALTH_LOAD];
+		public static boolean quit = false;
 		public static void main()
 		{
 			printHeading(6);
+			while(healthCount > 0 && !quit)
+			{
+				System.out.println("Your turn! Hit Enter when ready:");
+				System.out.print(">>");
+				turn = cin.nextLine();
+				if(turn.equals("Q") || turn.equals("q"))
+				{
+					quit = true;
+				}
+				else{
+					damage = random.nextInt(2)+1;//random int from 1-2
+					amount = random.nextInt(6)+1;//random int from 1-6
+					takeDamage();
+					printClip();
+				}
+			}
+			if(quit)
+			{
+				System.out.println("You quit!");
+			}
+			else{
+				System.out.println("You died!");
+			}
+			
+		}
+		public static void takeDamage()
+		{
+			if(damage == 1)
+			{
+				healthCount -= amount;
+				System.out.println("Taking " + amount + " damage!");
+			}
+			else
+			{
+				if(healthCount + amount < HEALTH_LOAD)
+				{
+					healthCount += amount;
+				}
+				else
+				{
+					healthCount = HEALTH_LOAD;
+				}
+				System.out.println("Power Up " + amount + "!");
+			}
+		}
+		public static void printClip()
+		{
+			String output = "Health:\t";
+			for(int i = 0; i < health.length; i++)
+			{
+				if(i < healthCount)
+				{
+					health[i] = " @ ";
+				}
+				else
+				{
+					health[i] = " [] ";
+				}
+				output += health[i];
+			}
+			System.out.println(output);
 		}
 	}
 	public static void create_exercise_name()

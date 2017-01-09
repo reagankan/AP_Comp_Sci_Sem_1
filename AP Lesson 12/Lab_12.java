@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.Vector;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import static java.lang.Math.pow;
 import static java.lang.Math.abs;
@@ -19,6 +20,28 @@ public class Lab_12
 		System.out.println("Lab_12");
 		create_exercise_name();
 		
+		/*List<Integer> dec;// = new ArrayList<Integer>();
+		dec.add(777);
+		System.out.println(dec);
+		
+		
+		List<Integer> init = new ArrayList<>();
+		init.add(888);
+		System.out.println(init.get(0));
+		
+		List<Integer> test = new ArrayList<>();
+		test.add(1);
+		test.add(1);
+		test.add(1);
+		test.add(1);
+		test.add(1);
+		System.out.println(test);
+	
+		Vector<Integer> testtest = new Vector<Integer>();
+		testtest.add(123);
+		testtest.add(321);
+		System.out.println(testtest);
+			*/
 		Ex_1 one = new Ex_1();
 		one.main();
 		pauseFor(3);
@@ -127,7 +150,7 @@ public class Lab_12
 	}
 	public static class Ex_2
 	{
-		private int X1, X2, Y1, Y2;
+		private double X1, X2, Y1, Y2;
 		private double distance;
 		//default constructor
 		public Ex_2()
@@ -138,7 +161,7 @@ public class Lab_12
 			Y2 = 0;
 		}
 		//constructor
-		public Ex_2(int xOne, int yOne, int xTwo, int yTwo)
+		public Ex_2(double xOne, double yOne, double xTwo, double yTwo)
 		{
 			X1 = xOne;
 			Y1 = yOne;
@@ -147,37 +170,37 @@ public class Lab_12
 		}
 		
 		//modifiers
-		public void setX1(int newX)
+		public void setX1(double newX)
 		{
 			X1 = newX;
 		}
-		public void setY1(int newY)
+		public void setY1(double newY)
 		{
 			Y1 = newY;
 		}
-		public void setX2(int newX)
+		public void setX2(double newX)
 		{
 			X2 = newX;
 		}
-		public void setY2(int newY)
+		public void setY2(double newY)
 		{
 			Y2 = newY;
 		}
 		
 		//accessors
-		public int getX1()
+		public double getX1()
 		{
 			return X1;
 		}
-		public int getY1()
+		public double getY1()
 		{
 			return Y1;
 		}
-		public int getX2()
+		public double getX2()
 		{
 			return X2;
 		}
-		public int getY2()
+		public double getY2()
 		{
 			return Y2;
 		}
@@ -189,22 +212,22 @@ public class Lab_12
 
 		public static void main()
 		{
-			int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+			double x1 = 0, y1 = 0, x2 = 0, y2 = 0;
 			System.out.println("Enter x1: ");
 			System.out.print(">>");
-			x1 = cin.nextInt();
+			x1 = cin.nextDouble();
 				
 			System.out.println("Enter y1: ");
 			System.out.print(">>");
-			y1 = cin.nextInt();
+			y1 = cin.nextDouble();
 				
 			System.out.println("Enter x2: ");
 			System.out.print(">>");
-			x2 = cin.nextInt();
+			x2 = cin.nextDouble();
 			
 			System.out.println("Enter y2: ");
 			System.out.print(">>");
-			y2 = cin.nextInt();
+			y2 = cin.nextDouble();
 			
 			Ex_2 distObject = new Ex_2(x1, y1, x2, y2);
 			System.out.printf(
@@ -214,19 +237,19 @@ public class Lab_12
 			//second calculation
 			System.out.println("Enter x1: ");
 			System.out.print(">>");
-			distObject.setX1(cin.nextInt());
+			distObject.setX1(cin.nextDouble());
 				
 			System.out.println("Enter y1: ");
 			System.out.print(">>");
-			distObject.setY1(cin.nextInt());
+			distObject.setY1(cin.nextDouble());
 				
 			System.out.println("Enter x2: ");
 			System.out.print(">>");
-			distObject.setX2(cin.nextInt());
+			distObject.setX2(cin.nextDouble());
 			
 			System.out.println("Enter y2: ");
 			System.out.print(">>");
-			distObject.setY2(cin.nextInt());
+			distObject.setY2(cin.nextDouble());
 			
 			System.out.printf(
 				"distance = %-10.2f\n", distObject.getDistance()

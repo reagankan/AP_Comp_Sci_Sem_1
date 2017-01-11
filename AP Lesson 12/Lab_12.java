@@ -20,9 +20,31 @@ public class Lab_12
 		System.out.println("Lab_12");
 		create_exercise_name();
 		
-		/*List<Integer> dec;// = new ArrayList<Integer>();
-		dec.add(777);
-		System.out.println(dec);
+
+		Ex_1 one = new Ex_1();
+		one.main();
+		pauseFor(3);
+		endl();
+		
+		Ex_2 two = new Ex_2();
+		two.main();
+		pauseFor(3);
+		endl();
+		
+		System.out.println("Lab_12.1"); cout("...");
+		
+		Ex_3 three = new Ex_3();
+		three.main();
+		pauseFor(3);
+		
+		Ex_4 four = new Ex_4();
+		four.main();
+	}	
+	public static void listTest()
+	{
+		List<Integer> dec;// = new ArrayList<Integer>();
+		//dec.add(777);
+		//System.out.println(dec);
 		
 		
 		List<Integer> init = new ArrayList<>();
@@ -41,16 +63,7 @@ public class Lab_12
 		testtest.add(123);
 		testtest.add(321);
 		System.out.println(testtest);
-			*/
-		Ex_1 one = new Ex_1();
-		one.main();
-		pauseFor(3);
-		endl();
-		
-
-		Ex_2 two = new Ex_2();
-		two.main();	
-	}	
+	}
 	public static class Ex_1
 	{
 		private int timeHR, timeMIN, distMI;
@@ -104,8 +117,9 @@ public class Lab_12
 			return mph;
 		}
 
-		public static void main()
+		public void main()
 		{
+			printHeading(1);
 			int hour = 0, minutes = 0, distance = 0;
 			System.out.println("Enter Hours: ");
 			System.out.print(">>");
@@ -210,8 +224,9 @@ public class Lab_12
 			return distance;
 		}
 
-		public static void main()
+		public void main()
 		{
+			printHeading(2);
 			double x1 = 0, y1 = 0, x2 = 0, y2 = 0;
 			System.out.println("Enter x1: ");
 			System.out.print(">>");
@@ -256,10 +271,229 @@ public class Lab_12
 			);
 		}
 	}
+	public static class Ex_3
+	{
+		private static String paint, interior, engine, tires;
+		
+		//default constructor
+		public Ex_3()
+		{
+			paint = "red w/gold fleck";
+			interior = "Corinthian leather (Brown)";
+			engine = "5 litre v8 507hp";
+			tires = "20\" Priellis";
+		}
+		//constructor
+		public Ex_3(String userPaint, String userInterior, String userEngine, String userTires)
+		{
+			paint = userPaint;
+			interior = userInterior;
+			engine = userEngine;
+			tires = userTires;
+		}
+		//Modifier
+		public static void resetAttributes(String resetPaint, String resetInterior, String resetEngine, String resetTires)
+		{
+			paint = resetPaint;
+			interior = resetInterior;
+			engine = resetEngine;
+			tires = resetTires;
+		}
+		//Accessors
+		public static String getPaint()
+		{
+			return paint;
+		}
+		public static String getInterior()
+		{
+			return interior;
+		}
+		public static String getEngine()
+		{
+			return engine;
+		}
+		public static String getTires()
+		{
+			return tires;
+		}
+		public static void printAttributes(int num)
+		{
+			System.out.println(
+			"\nYour vehicle #" + num + " is ready...\n" +
+			"Paint:\t" + getPaint() + "\n" +
+			"Interior:\t" + getInterior() + "\n" +
+			"Engine:\t" + getEngine() + "\n" +
+			"Tires:\t" + getTires() +  "\n"
+			);
+		}
+		//overloaded in case we forget to make a class object
+		public static void printAttributes()
+		{
+			System.out.println(
+			"A default vehicle is ready...\n" +
+			"Paint:\t" + getPaint() + "\n" +
+			"Interior:\t" + getInterior() + "\n" +
+			"Engine:\t" + getEngine() + "\n" +
+			"Tires:\t" + getTires() +  "\n"
+			);
+		}
+		public void main()
+		{
+			printHeading(3);
+			
+			printAttributes();//prints attributes provided by default constructor
+			
+			String Paint, Interior, Engine, Tires;
+			System.out.println("Enter paint: ");
+			System.out.print(">>");
+			Paint = cin.nextLine();
+				
+			System.out.println("Enter interior: ");
+			System.out.print(">>");
+			Interior = cin.nextLine();
+				
+			System.out.println("Enter engine: ");
+			System.out.print(">>");
+			Engine = cin.nextLine();
+			
+			System.out.println("Enter tires: ");
+			System.out.print(">>");
+			Tires = cin.nextLine();
+			
+			//although the class methods are static, we still need to 
+			//instantiate an object for the class in order to avoid using
+			//the default constructor
+			Ex_3 carObject = new Ex_3(Paint,Interior,Engine,Tires);
+			printAttributes(1);
+			
+			//second car
+			System.out.println("Enter new paint: ");
+			System.out.print(">>");
+			Paint = cin.nextLine();
+				
+			System.out.println("Enter new interior: ");
+			System.out.print(">>");
+			Interior = cin.nextLine();
+				
+			System.out.println("Enter new engine: ");
+			System.out.print(">>");
+			Engine = cin.nextLine();
+			
+			System.out.println("Enter new tires: ");
+			System.out.print(">>");
+			Tires = cin.nextLine();
+			
+			resetAttributes(Paint,Interior,Engine,Tires);
+			printAttributes(2);
+		}	
+	}
+	/*************************************************/
+	public static class Ex_4
+	{
+		private static String hair, eyes, skin;
+		
+		//default constructor
+		public Ex_4()
+		{
+			hair = "black";
+			eyes = "green";
+			skin = "tan";
+		}
+		//constructor
+		public Ex_4(String userHair, String userEyes, String userSkin)
+		{
+			hair = userHair;
+			eyes = userEyes;
+			skin = userSkin;
+		}
+		//Modifier
+		public static void resetAttributes(String resetHair, String resetEyes, String resetSkin)
+		{
+			hair = resetHair;
+			eyes = resetEyes;
+			skin = resetSkin;
+		}
+		//Accessors
+		public static String getHair()
+		{
+			return hair;
+		}
+		public static String getEyes()
+		{
+			return eyes;
+		}
+		public static String getSkin()
+		{
+			return skin;
+		}
+
+		public static void printProfile(int num)
+		{
+			System.out.println(
+			"\nProfile #" + num + " is ready...\n" +
+			"Hair:\t" + getHair() + "\n" +
+			"Eyes:\t" + getEyes() + "\n" +
+			"Skin:\t" + getSkin() + "\n" 
+			);
+		}
+		//overloaded in case we forget to make a class object
+		public static void printProfile()
+		{
+			System.out.println(
+			"A default profile is ready...\n" +
+			"Hair:\t" + getHair() + "\n" +
+			"Eyes:\t" + getEyes() + "\n" +
+			"Skin:\t" + getSkin() + "\n"
+			);
+		}
+		public void main()
+		{
+			printHeading(4);
+			
+			printProfile();//prints attributes provided by default constructor
+			
+			String Hair, Eyes, Skin;
+			System.out.println("Enter hair: ");
+			System.out.print(">>");
+			Hair = cin.nextLine();
+				
+			System.out.println("Enter eyes: ");
+			System.out.print(">>");
+			Eyes = cin.nextLine();
+				
+			System.out.println("Enter skin: ");
+			System.out.print(">>");
+			Skin = cin.nextLine();
+			
+			//although the class methods are static, we still need to 
+			//instantiate an object for the class in order to avoid using
+			//the default constructor
+			Ex_4 carObject = new Ex_4(Hair, Eyes, Skin);
+			printProfile(1);
+			
+			//second profile
+			System.out.println("Enter new hair: ");
+			System.out.print(">>");
+			Hair = cin.nextLine();
+				
+			System.out.println("Enter new eyes: ");
+			System.out.print(">>");
+			Eyes = cin.nextLine();
+				
+			System.out.println("Enter new skin: ");
+			System.out.print(">>");
+			Skin = cin.nextLine();
+			
+			resetAttributes(Hair, Eyes, Skin);
+			printProfile(2);
+		}	
+	}
 	public static void create_exercise_name()
 	{
 		exercise_name.add("Miles Per Hour");
 		exercise_name.add("Distance Between 2 Points");
+		exercise_name.add("Car Class");
+		exercise_name.add("Human Class");
 	}
 	public static void printHeading(int num)
 	{

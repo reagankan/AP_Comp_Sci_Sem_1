@@ -20,7 +20,7 @@ public class Lab_12
 		System.out.println("Lab_12");
 		create_exercise_name();
 		
-
+/*
 		Ex_1 one = new Ex_1();
 		one.main();
 		pauseFor(3);
@@ -39,6 +39,14 @@ public class Lab_12
 		
 		Ex_4 four = new Ex_4();
 		four.main();
+		pauseFor(3);
+		*/
+		Ex_5 five = new Ex_5();
+		five.main();
+		pauseFor(3);
+		
+		Ex_6 six = new Ex_6();
+		six.main();
 	}	
 	public static void listTest()
 	{
@@ -488,12 +496,174 @@ public class Lab_12
 			printProfile(2);
 		}	
 	}
+	/*****************************/
+	/*****************************/
+	public static class Ex_5
+	{
+		private static String firstName, lastName, avatar;
+		private static int userID;
+		
+		//default constructor
+		public Ex_5()
+		{
+			firstName = "Richard";
+			lastName = "Robinette";
+			avatar = "Falcon";
+			userID = (int)(Math.random() * 1000000) + 1;
+		}
+		//constructor without Avatar
+		public Ex_5(String fName, String lName)
+		{
+			firstName = fName;
+			lastName = lName;
+			avatar = "Undefined";
+			userID = (int)(Math.random() * 1000000) + 1;
+		}
+		//full constructor with Avatar
+		public Ex_5(String fName, String lName, String uAvatar)
+		{
+			firstName = fName;
+			lastName = lName;
+			avatar = uAvatar;
+			userID = (int)(Math.random() * 1000000) + 1;
+		}
+		//this is called when we print the class object
+		public String toString()
+		{
+			return "Customer Info...\nFirst Name: " + firstName +
+									"\nLast Name: " + lastName +
+									"\nAvatar: " + avatar +
+									"\nUser ID#: " + userID + "\n";
+		}
+		public void main()
+		{
+			printHeading(5);
+			
+			System.out.print("Default ");
+			Ex_5 default1 = new Ex_5();
+			System.out.println(default1);
+			
+			String first_name, last_name, userAvatar, choice;
+			int ID = 0;
+			
+			System.out.println("Enter First Name: ");
+			System.out.print(">>");
+			first_name = cin.nextLine();
+				
+			System.out.println("Enter Last Name: ");
+			System.out.print(">>");
+			last_name = cin.nextLine();
+		
+			System.out.println(first_name + " " + last_name + ", do you want an avatar?(y or n)");
+			System.out.print(">>");
+			choice = cin.nextLine();
+			
+			if(choice.equals("n") || choice.equals("N") || choice.equals("no") || choice.equals("nO") || choice.equals("No") || choice.equals("NO"))
+			{
+				Ex_5 noAvatar = new Ex_5(first_name, last_name);
+				endl();
+				System.out.println(noAvatar);
+			}
+			else
+			{
+				System.out.println("Enter Avatar: ");
+				System.out.print(">>");
+				userAvatar = cin.nextLine();
+				
+				Ex_5 withAvatar = new Ex_5(first_name, last_name, userAvatar);
+				endl();
+				System.out.println(withAvatar);
+			}
+		}	
+	}
+		public static class Ex_6
+	{
+		private static String manufacturer, name, category;
+		private static long UPC;
+		private static double price;
+		
+		//default constructor
+		public Ex_6()
+		{
+			
+		}
+		
+		//constructor without category and price
+		public Ex_6(String uManufacturer, String uName)
+		{
+			manufacturer = uManufacturer;
+			name = uName;
+			category = "n\\a";
+			UPC = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
+			price = -1;
+		}
+		//full constructor 
+		public Ex_6(String uManufacturer, String uName, String uCategory, double uPrice)
+		{
+			manufacturer = uManufacturer;
+			name = uName;
+			category = uCategory;
+			UPC = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
+			price = uPrice;
+		}
+		//this is called when we print the class object
+		public String toString()
+		{
+			return "Product Info...\nManufacturer: " + manufacturer +
+									"\nLast Name: " + name +
+									"\nAvatar: " + category +
+									"\nUser ID#: " + UPC +
+									"\nPrice: $" + price + "\n";
+		}
+		public void main()
+		{
+			printHeading(6);
+	
+			String manu, itemName, categ, choice;
+			double Price = 0;
+			
+			System.out.println("Enter Manufacturer");
+			System.out.print(">>");
+			manu = cin.nextLine();
+				
+			System.out.println("Enter Item Name");
+			System.out.print(">>");
+			itemName = cin.nextLine();
+			
+			System.out.println("Will you be entering the category and price information?(y or n)");
+			System.out.print(">>");
+			choice = cin.nextLine();
+			
+			if(choice.equals("n") || choice.equals("N") || choice.equals("no") || choice.equals("nO") || choice.equals("No") || choice.equals("NO"))
+			{
+				Ex_6 withOut = new Ex_6(manu, itemName);
+				endl();
+				System.out.println(withOut);
+			}
+			else
+			{
+				System.out.println("Enter Category: ");
+				System.out.print(">>");
+				categ = cin.nextLine();
+				
+				System.out.println("Enter Price: ");
+				System.out.print(">>");
+				Price = cin.nextDouble();
+				
+				Ex_6 everything = new Ex_6(manu, itemName, categ, Price);
+				endl();
+				System.out.println(everything);
+			}
+		}	
+	}
 	public static void create_exercise_name()
 	{
 		exercise_name.add("Miles Per Hour");
 		exercise_name.add("Distance Between 2 Points");
 		exercise_name.add("Car Class");
 		exercise_name.add("Human Class");
+		exercise_name.add("The User Class");
+		exercise_name.add("Inventory Items");
 	}
 	public static void printHeading(int num)
 	{

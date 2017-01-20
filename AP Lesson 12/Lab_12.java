@@ -611,9 +611,9 @@ public class Lab_12
 		public String toString()
 		{
 			return "Product Info...\nManufacturer: " + manufacturer +
-									"\nLast Name: " + name +
-									"\nAvatar: " + category +
-									"\nUser ID#: " + UPC +
+									"\nItem Name: " + name +
+									"\nCategory: " + category +
+									"\nUPC#: " + UPC +
 									"\nPrice: $" + price + "\n";
 		}
 		public void main()
@@ -681,7 +681,7 @@ public class Lab_12
 		try{
 			TimeUnit.MILLISECONDS.sleep(milli);
 		} catch(InterruptedException ex){
-			//do nothing
+			//do nothing...just need to catch exception
 		}
 	}
 	public static void pauseFor(int sec)

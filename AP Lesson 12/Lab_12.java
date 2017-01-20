@@ -20,7 +20,7 @@ public class Lab_12
 		System.out.println("Lab_12");
 		create_exercise_name();
 		
-/*
+
 		Ex_1 one = new Ex_1();
 		one.main();
 		pauseFor(3);
@@ -40,7 +40,7 @@ public class Lab_12
 		Ex_4 four = new Ex_4();
 		four.main();
 		pauseFor(3);
-		*/
+		
 		Ex_5 five = new Ex_5();
 		five.main();
 		pauseFor(3);
@@ -351,9 +351,10 @@ public class Lab_12
 			
 			printAttributes();//prints attributes provided by default constructor
 			
-			String Paint, Interior, Engine, Tires;
+			String Paint, Interior, Engine, Tires, newline;
 			System.out.println("Enter paint: ");
 			System.out.print(">>");
+			newline = cin.nextLine();
 			Paint = cin.nextLine();
 				
 			System.out.println("Enter interior: ");

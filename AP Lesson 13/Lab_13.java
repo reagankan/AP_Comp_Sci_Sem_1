@@ -25,13 +25,6 @@ public class Lab_13
 		one.ToyRunner();
 		//use the class heirarchy
 		one.ToyStoreRunner();
-		/*pauseFor(3);
-		endl();
-		
-		System.out.println("Lab_13.1"); cout("...");
-		Ex_2 two = new Ex_2();
-		two.main();
-		endl();*/
 	}	
 	
 	public static class Ex_1
@@ -41,26 +34,34 @@ public class Lab_13
 		//running the main for the ToyStore Class
 		public void ToyRunner()
 		{
+			printHeading(1);
+			msleep(1500);
 			AFigure afTestObj = new AFigure("action_test");
 			Car carTestObj = new Car("car_test");
 			
-			System.out.println(afTestObj);
+			System.out.println("Checking Toy class...\n"+afTestObj);
+			System.out.println(carTestObj); msleep(1500);
 			endl();
-			System.out.println(carTestObj);
 		}
 		//ToyStoreRunner
 		public void ToyStoreRunner()
 		{
 			String input = "Hotwheel, Car, G.I.Joe, Action Figure, PennyRacer, Car, Matchbox, Car, Star Wars, Action Figure, Pullback, Car, Star Wars, Action Figure";
 			ToyStore toyStoreObj = new ToyStore(input);
-			System.out.println(toyStoreObj);
-			System.out.println("Most Frequent Toy:" + toyStoreObj.getMostFrequentToy);
-			System.out.println("Most Frequent Type:" + toyStoreObj.getMostFrequentType);
+			
+			System.out.print("[ ");
+			for(int i = 0; i < toyStoreObj.getSize()-1; i++)
+			{
+				System.out.print(toyStoreObj.toString(i) + ", ");
+			}
+			System.out.print(toyStoreObj.toString(toyStoreObj.getSize()-1)+" ]");
+			System.out.println("\nMost Frequent Toy:" + toyStoreObj.getMostFrequentToy());
+			System.out.println("Most Frequent Type:" + toyStoreObj.getMostFrequentType());
 		}
 		//ToyStore Class
 		public class ToyStore
 		{
-			ArrayList<Toy> toyList = new ArrayList();
+			ArrayList<Toy> List = new ArrayList<Toy>();
 			//default constructor
 			public ToyStore()
 			{
@@ -70,32 +71,43 @@ public class Lab_13
 			public ToyStore(String listOfToys)
 			{
 				loadToys(listOfToys);
+				System.out.println("List...");
+				System.out.println(listOfToys);
 			}
 			
 			public void loadToys(String toyList)
 			{
-				ArrayList<String> toys = toyList.split(", ");
-				
-				for(i = 0; i < toys.length(); i+=2)
+				String[] temp = toyList.split(", ");
+				ArrayList<String> toys = new ArrayList<String>(Arrays.asList(temp));
+				for(int i = 0; i < toys.size(); i+=2)
 				{
-					String name = toys.at(i);
-					String type = toys.at(i+1);
+					String name = toys.get(i);
+					String type = toys.get(i+1);
 					Toy newToyObj = getThatToy(name);
 					
 					if(newToyObj == null)
 					{
-						
+						if(type.equals("Car"))
+						{
+							List.add(new Car(name));
+						}
+						if(type.equals("Action Figure"))
+						{
+							List.add(new AFigure(name));
+						}
 					}
 					else
 					{
-						new
+						newToyObj.setCount(newToyObj.getCount()+1);
 					}
 				}
 			}
 			public Toy getThatToy(String NaMe)
 			{
-				for(Toy x : toyList)
+				//System.out.println("List___________");
+				for(Toy x : List)
 				{
+					//System.out.println(x);
 					if(x.getName().equals(NaMe))
 					{
 						return x;
@@ -105,9 +117,9 @@ public class Lab_13
 			}
 			public String getMostFrequentToy()
 			{
-				String name;
+				String name = "";
 				int max = Integer.MIN_VALUE;
-				for(Toy x : toyList)
+				for(Toy x : List)
 				{
 					if(max < x.getCount())
 					{
@@ -115,170 +127,49 @@ public class Lab_13
 						name = x.getName();
 					}
 				}
-				return name;
+				return " " + name;
 			}
 			public String getMostFrequentType()
 			{
 				int cars = 0;
 				int figures = 0;
 				
-				for(Toy x : toyList)
+				for(Toy x : List)
 				{
-					if(x.getType().equals("Cars"))
+					//System.out.print(x);
+					if(x.getType().equals("Car"))
 					{
+						//System.out.println(" is a Car");
 						cars++;
 					}
 					if(x.getType().equals("Action Figure"))
 					{
+						//System.out.println(" is an AF");
 						figures++;
 					}
 				}
 				
 				if(cars > figures)
 				{
-					return "Cars";
+					return " Cars";
 				}
 				else if(cars == figures)
 				{
 					return "Equal amounts of action figures and cars!";
 				}
-				return "Action Figures";
+				return " Action Figures";
 			}
-			public String toString()
+			public int getSize()
 			{
-				return 
+				return List.size();
 			}
-		}
-	/****************************Start Hierarchy***************************/
-		/*superClass superClass superClass superClass superClass superClass*/
-		public abstract class Toy
-		{
-			//private vars
-			private String nameOfToy;
-			private int numToysInSystem;
-			
-			//default constructor
-			public Toy()
+			public String toString(int i)
 			{
-				nameOfToy = "VOID";
-				numToysInSystem = 1;
+				//System.out.println(List.size());
+				return List.get(i).toString();
 			}
-			//constructor
-			public Toy(String toyName)
-			{
-				nameOfToy = toyName;
-				numToysInSystem = 1;
-			}
-			
-			/*Accessors*/
-			public String getName()
-			{
-				return nameOfToy;
-			}
-			public int getCount()
-			{
-				return numToysInSystem;
-			}
-			
-			/*Modifiers*/
-			public void setName(String newName)
-			{
-				nameOfToy = newName;
-			}
-			public void setCount(int newCount)
-			{
-				numToysInSystem = newCount;
-			}
-			
-			/*Abstract Methods*/
-			public abstract String getType();
-			
-			public String toString()
-			{
-				return "[" + nameOfToy + "][" + numToysInSystem + "]\n";
-			}
-		}
-		/*superClass superClass superClass superClass superClass superClass*/
-		/*subClass subClass subClass subClass subClass subClass subClass subClass*/
-		//AFigure
-		public class AFigure extends Toy
-		{
-			//default constructor
-			public AFigure()
-			{
-				super();
-			}
-			//constructor
-			public AFigure(String toyName)
-			{
-				super(toyName);
-			}
-			/*Accessors*/
-			public String getName()
-			{
-				return super.getName();
-			}
-			public int getCount()
-			{
-				return super.getCount();
-			}
-			
-			/*Modifiers*/
-			public void setName(String newName)
-			{
-				super.setName(newName);
-			}
-			public void setCount(int newCount)
-			{
-				super.setCount(newCount);
-			}
-			/*Overridden Abstract Methods*/
-			public String getType()
-			{
-				return "Action Figure";
-			}
-		}
-		//Car
-		public class Car extends Toy
-		{
-			//default constructor
-			public Car()
-			{
-				super();
-			}
-			//constructor
-			public Car(String toyName)
-			{
-				super(toyName);
-			}
-			/*Accessors*/
-			public String getName()
-			{
-				return super.getName();
-			}
-			public int getCount()
-			{
-				return super.getCount();
-			}
-			
-			/*Modifiers*/
-			public void setName(String newName)
-			{
-				super.setName(newName);
-			}
-			public void setCount(int newCount)
-			{
-				super.setCount(newCount);
-			}
-			/*Overridden Abstract Methods*/
-			public String getType()
-			{
-				return "Car";
-			}
-		}
-		/*subClass subClass subClass subClass subClass subClass subClass subClass*/
+		}		
 	}
-	
 	public static void create_exercise_name()
 	{
 		exercise_name.add("The Toy Inventory System");

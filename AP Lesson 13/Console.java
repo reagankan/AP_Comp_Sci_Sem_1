@@ -1,5 +1,14 @@
 public abstract class Console extends GameSystems
 	{
+		public Console()
+		{
+			super();
+		}
+		public Console(String plat)
+		{
+			super(plat);
+		}
+		
 		/*Abstract Methods*/
 		public abstract String getController();
 		

@@ -1,25 +1,30 @@
 import java.util.*;
-public class GMC implements Location {
-	public double x,y;
+public class GMC extends Car{
+	private double[] loc = new double[2];
+	private double ID;
+	public GMC()
+	{
+		loc[0] = 0;
+		loc[1] = 0;
+		ID = (int)(Math.random() * 1000000) + 1;
+	}
 	public GMC(double x, double y)
 	{
-		this.x = x;
-		this.y = y;
-	}
-	public int getID()
-	{
-		return (int)(Math.random() * 1000000) + 1;
+		loc[0] = x;
+		loc[1] = y;
+		ID = (int)(Math.random() * 1000000) + 1;
 	}
 	public void move(double dx, double dy)
 	{
-		x += dx;
-		y += dy;
+		loc[0] += dx;
+		loc[1] += dy;
+	}
+	public double getID()
+	{
+		return ID;
 	}
 	public double[] getLoc()
 	{
-		double[] array = new double[2];
-		array[0] = x;
-		array[1] = y;
-		return array;
+		return loc;
 	}
 }

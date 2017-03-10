@@ -1,7 +1,7 @@
 import java.util.*;
 public class GMC extends Car{
 	private double[] loc = new double[2];
-	private double ID;
+	private int ID;
 	public GMC()
 	{
 		loc[0] = 0;
@@ -19,7 +19,7 @@ public class GMC extends Car{
 		loc[0] += dx;
 		loc[1] += dy;
 	}
-	public double getID()
+	public int getID()
 	{
 		return ID;
 	}

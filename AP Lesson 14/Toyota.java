@@ -1,7 +1,7 @@
 import java.util.*;
 public class Toyota extends Car{
 	private double[] location = new double[2];
-	private double ID;
+	private int ID;
 	public Toyota()
 	{
 		location[0] = 0.0;
@@ -20,7 +20,7 @@ public class Toyota extends Car{
 		location[0] += dx;
 		location[1] += dy;
 	}
-	public double getID()
+	public int getID()
 	{
 		return ID;
 	}

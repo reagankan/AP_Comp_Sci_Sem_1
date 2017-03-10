@@ -1,7 +1,7 @@
 import java.util.*;
 public class Honda extends Car{
 	private double[] location;
-	private double ID;
+	private int ID;
 	public Honda(double[] coor)
 	{
 		location = coor;
@@ -12,7 +12,7 @@ public class Honda extends Car{
 		location[0] += dx;
 		location[1] += dy;
 	}
-	public double getID()
+	public int getID()
 	{
 		return ID;
 	}

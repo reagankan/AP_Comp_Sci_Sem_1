@@ -6,7 +6,7 @@ public class Satellite
 {
    public static void main(String[]args)
    {
-       System.out.println("Lab 14");
+       System.out.println("Lab 14.2 \n==========================");
 	   ArrayList<Location> locate = new ArrayList<>();
        double[] honLoc = {5, 6};
        locate.add(new Honda(honLoc));
@@ -14,38 +14,11 @@ public class Satellite
        locate.add(new GMC(3, 8));
 
        double[] home = {0, 0};
-	   
-	   
-       String printout = 
-               "==========================" + "\nStarting locations...";
-
-
-       for (Location l : locate)
-       {
-           printout += "\nLocation for " + l.getID() + ": (" + getLocation(l.getLoc()) + ")";
-       }
-
-
-       printout += "\n\n" + "==========================" +
-                   "\nDistance from home...";
-
-
-       for (Location l : locate)
-       {
-           double temp = getDistance(l.getLoc(), home);
-		   temp *= 100; temp = Math.round(temp); temp /= 100;
-		   printout += "\nDistance for " + l.getID() + ": (" + temp + ")";
-       }
-
-
-       System.out.println(printout);
-	   /**********************************************************************/
-	   System.out.println("\n\nLab 14.1 \n==========================");
 	   double one, two;
 	   for(int i = 0; i < locate.size(); i++)
 	   {
 		   Location temp = locate.get(i);
-		   Car elem = (Car)(temp);
+		   Location elem = temp;
 		   
 		   one = roundedRandomDouble(); 
 		   two = roundedRandomDouble();

@@ -29,11 +29,15 @@ public class Magpie2
 		/** To be completed in Exercise_02:
 		 * 	Modify the following code to use the findKeyword
 		 * 	Method (details in "Exercise_02" below. */
-		if (statement.indexOf("no") >= 0)
+		
+		if(findKeyword(statement, "no") >= 0)
+		{
+			response = "Reagan Kan";
+		}
+		else if (statement.indexOf("no") >= 0)
 		{
 			response = "Why so negative?";
 		}
-
 		else if (statement.indexOf("mother") >= 0
 				|| statement.indexOf("father") >= 0
 				|| statement.indexOf("sister") >= 0
@@ -93,20 +97,23 @@ public class Magpie2
 	 * ========================================================= */
 	private int findKeyword(String statement, String goal, int startPos)
 	{
-		String phrase = statement.trim();  phrase.toLowerCase();
+		String before = "", after = "";
+		
 		
 		/* New String variable phrase = a more searchable version of statement.
-		 	-Use a combination of trim() and toLowerCase() modify statement.
-
-		   New int variable psn = the location of goal in phrase after
-		   startPos
-
-			-->Refinement: Make sure we find goal by itself, and not part
+		 	-Use a combination of trim() and toLowerCase() modify statement.*/
+		String phrase = statement.trim();  phrase.toLowerCase();
+		
+		/*   New int variable psn = the location of goal in phrase after
+		   startPos*/
+		int psn = phrase.indexOf("no");
+		System.out.println("psn: " + psn);
+			/*-->Refinement: Make sure we find goal by itself, and not part
 			of another word ("no" vs no in "know"). if you find an occurrence
 			of goal, make sure before and after aren't letters.
 
 			As long as psn >= 0...*/
-		int psn = phrase.indexOf("no");
+		
 		while(psn >= 0)
 		{
 				/*Check if psn > 0 - there is no need to check for before at the
@@ -117,7 +124,9 @@ public class Magpie2
 		
 			if(psn > 0)
 			{
-				char before = phrase.charAt(psn-1);
+				before = Character.toString(phrase.charAt(psn-1));
+				//System.out.println("before: " + before);
+				cout("justBefore",phrase, goal, before, after);
 			}
 		
 				/*check if you can fit goal into the rest of phrase - no need to
@@ -125,9 +134,10 @@ public class Magpie2
 					set after = the slot in phrase after psn + length of goal */
 
 				//=====> code here
-			if(psn + goal.length() < 
+			if(psn + goal.length() < phrase.length())
 			{
-				char after = phrase.charAt(psn + goal.length());
+				after = Character.toString(phrase.charAt(psn + goal.length()));
+				cout("with after",phrase, goal, before, after);
 			}
 
 				/* if before and after are not letters (compare before to "a"
@@ -135,7 +145,7 @@ public class Magpie2
 						--return psn
 
 				Otherwise, search for goal in phrase from psn + 1 forward */
-			if()
+			if(false)
 			{
 				return psn;
 			}
@@ -144,8 +154,7 @@ public class Magpie2
 				findKeyword(phrase, goal, psn+1);
 			}
 		}
-		return -1;
-
+		return psn;
 	}
 
 	/** Override - this method is used if there are only 2 parameters...*/
@@ -154,7 +163,16 @@ public class Magpie2
 		//set startPos to 0 if not specified
 		return findKeyword(statement, goal, 0);
 	}
-
+	
+	private void cout(String description, String phrase, String goal, String before, String after)
+	{
+		System.out.println(description);
+		System.out.println("phrase: " + phrase);
+		System.out.println("goal: " + goal);
+		System.out.println("before: " + before);
+		System.out.println("after: " + after + "\n");
+	}
+	
 	/** getRandomResponse() method
 	 * =============================================================*/
 	/** Pick a default response to use if nothing else fits.

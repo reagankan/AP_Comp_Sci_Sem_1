@@ -30,11 +30,7 @@ public class Magpie2
 		 * 	Modify the following code to use the findKeyword
 		 * 	Method (details in "Exercise_02" below. */
 		
-		if(findKeyword(statement, "no") >= 0)
-		{
-			response = "Reagan Kan";
-		}
-		else if (statement.indexOf("no") >= 0)
+		if(findKeyword(statement, "no") >= 0 || findKeyword(statement, "No") >= 0 || findKeyword(statement, "NO") >= 0 || findKeyword(statement, "nO") >= 0)
 		{
 			response = "Why so negative?";
 		}
@@ -84,15 +80,6 @@ public class Magpie2
 		}
 		return response;
 	}
-	private int calcPSN(String str)
-	{
-		int ret = 0;
-		if(str.charAt(str.indexOf("no")-1) == ' ' && str.charAt(str.indexOf("no")+2) == ' ')
-		{
-			
-		}
-		return 0;
-	}
 	/** Ex_02: The findKeyword() Method...
 	 * ========================================================= */
 	private int findKeyword(String statement, String goal, int startPos)
@@ -106,8 +93,9 @@ public class Magpie2
 		
 		/*   New int variable psn = the location of goal in phrase after
 		   startPos*/
-		int psn = phrase.indexOf("no");
-		System.out.println("psn: " + psn);
+		//System.out.printf("goal: %s\t", goal);
+		int psn = phrase.indexOf(goal, startPos);
+		//System.out.println("psn: " + psn);
 			/*-->Refinement: Make sure we find goal by itself, and not part
 			of another word ("no" vs no in "know"). if you find an occurrence
 			of goal, make sure before and after aren't letters.
@@ -126,7 +114,7 @@ public class Magpie2
 			{
 				before = Character.toString(phrase.charAt(psn-1));
 				//System.out.println("before: " + before);
-				cout("justBefore",phrase, goal, before, after);
+				//cout("justBefore",phrase, goal, before, after);
 			}
 		
 				/*check if you can fit goal into the rest of phrase - no need to
@@ -137,7 +125,7 @@ public class Magpie2
 			if(psn + goal.length() < phrase.length())
 			{
 				after = Character.toString(phrase.charAt(psn + goal.length()));
-				cout("with after",phrase, goal, before, after);
+				//cout("with after",phrase, goal, before, after);
 			}
 
 				/* if before and after are not letters (compare before to "a"
@@ -145,13 +133,16 @@ public class Magpie2
 						--return psn
 
 				Otherwise, search for goal in phrase from psn + 1 forward */
-			if(false)
+			//System.out.println("before: " + before + "\tafter: " + after);
+			//if(before.compareTo("a") == -6 || before.compareTo("a") == -31 || after.compareTo("z") == -6 || after.compareTo("z") == -31)
+			if((before.compareTo("") == 0 || before.compareTo(" ") == 0) && (after.compareTo("") == 0 || after.compareTo(" ") == 0))
 			{
 				return psn;
 			}
 			else
 			{
-				findKeyword(phrase, goal, psn+1);
+				//System.out.println("Recursion");
+				return findKeyword(phrase, goal, psn+1);
 			}
 		}
 		return psn;

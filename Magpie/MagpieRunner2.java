@@ -19,6 +19,7 @@ public class MagpieRunner2
 		if(cond){
 		if(comp.equals("")){comp = "[empty]";}
 		if(comp.equals(" ")){comp = "[space]";}
+		System.out.println("comp: " + comp);
 		int cnt = 0;
 		for(int i = start; i < end; i++)
 		{
@@ -32,12 +33,15 @@ public class MagpieRunner2
 			arrTemp[0] = c;
 			letter = String.valueOf(arrTemp);
 			int val = comp.compareTo(letter);
-			min = min(val, min);
-			max = max(val, max);
-			compareTo += comp + " compareTo "+ letter + " is " + comp.compareTo(letter);
+			min = Math.min(val, min);
+			max = Math.max(val, max);
+			if(letter.equals("A") || letter.equals("a") || letter.equals("Z") || letter.equals("z"))
+				compareTo += comp + " compareTo "+ letter + " is " + comp.compareTo(letter);
 			//System.out.print(comp + " with "+ letter + " is " + comp.compareTo(letter));
 			cnt++;
-		}compareTo += "\n";//System.out.println("\n");
+		}//compareTo += "\n";//System.out.println("\n");
+		System.out.println(compareTo);
+		
 		testCompareTo(comp,start+32,end+32);}
 	}
 	
@@ -66,16 +70,27 @@ public class MagpieRunner2
 		}
 		System.out.println("CREATED <<compareTo_values.cpp>>");
 	}
-	
+	void testCompareToRunner()
+	{
+		testCompareTo(); 
+		System.out.printf("max value is %d\n", max);
+		System.out.printf("min value is %d\n", min);
+		max = 0; min = 2000;
+		testCompareTo("",65, 91);
+		System.out.printf("max value is %d\n", max);
+		System.out.printf("min value is %d\n", min);
+		max = 0; min = 2000;
+		testCompareTo(" ",65, 91);
+		System.out.printf("max value is %d\n", max);
+		System.out.printf("min value is %d\n", min);
+		System.exit(0);
+	}
 	/**
 	 * Create a Magpie, give it user input, and print its replies.
+	 * 6,25,-6,-31
 	 */
 	public static void main(String[] args)
 	{
-		testCompareTo(); 
-		System.exit(0);
-		
-		
 		Magpie2 maggie = new Magpie2();
 		
 		System.out.println (maggie.getGreeting());

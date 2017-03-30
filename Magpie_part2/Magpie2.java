@@ -41,6 +41,16 @@ public class Magpie2
 		{
 			response = "Tell me more about your family.";
 		}
+		/** Exercise_03(Final)
+		 * ==================================================
+		 * Create additional code (another else if) that
+		 * responds "Tell me more about your pet" if the
+		 * user mentions the word cat, dog, fish, or turtle
+		 * in their statement.
+		 *
+		 * Create addtional code (another else if) that
+		 * responds "He sounds like a pretty dank teacher"
+		 * if you mention "Robinette" in your statement */
 		else if (findKeyword(statement,"Robinette") >= 0
 				|| findKeyword(statement,"Richard") >= 0
 				|| findKeyword(statement,"robinette") >= 0
@@ -55,23 +65,102 @@ public class Magpie2
 		{
 			response = "Tell me more about your pet";
 		}
-//
-		/** Exercise_03(Final)
-		 * ==================================================
-		 * Create additional code (another else if) that
-		 * responds "Tell me more about your pet" if the
-		 * user mentions the word cat, dog, fish, or turtle
-		 * in their statement.
-		 *
-		 * Create addtional code (another else if) that
-		 * responds "He sounds like a pretty dank teacher"
-		 * if you mention "Robinette" in your statement */
-
+		// Responses which require transformations
+		else if (findKeyword(statement, "I want to", 0) >= 0)
+		{
+		  response = transformIWantToStatement(statement);
+		}
 		else
 		{
-			response = getRandomResponse();
+		  // Look for a two word (you <something> me)
+		  // pattern
+		  int psn = findKeyword(statement, "you", 0);
+
+		  if (psn >= 0 && findKeyword(statement, "me", psn) >= 0)
+		  {
+			 response = transformYouMeStatement(statement);
+		  }
+		  else
+		  {
+			 response = getRandomResponse();
+		  }
 		}
 		return response;
+	}
+	/**
+	* Take a statement with "I want to <something>." and transform it into
+	* "What would it mean to <something>?"
+	* @param statement the user statement, assumed to contain "I want to"
+	* @return the transformed statement
+	*/
+	private String transformIWantToStatement(String statement)
+	{
+	  /**
+	   * trim the statement
+	   * variable lastChar = last character in statement
+	   * if lastChar is a period...
+	   *        remove the last character from statement
+	   */
+	   statement = statement.trim();
+	   char lastChar = statement.charAt(statement.length()-1);
+	   if(lastChar == '.'){statement = statement.substring(0,statement.length()-1);}
+	   /* 
+	   Set new int psn to the result from...
+	   *        findKeyword() method @param statement, goal is "I want to "*/
+	   String goal = "I want to";
+	   int psn = findKeyword(statement,goal);
+	   //System.out.println("psn: " + psn);
+	   /*
+	   * Set new String restOfStatement to the rest of statement after the
+	   * "I want to ".
+	   */
+	   String restOfStatement = statement.substring(psn+goal.length(), statement.length());
+	   //System.out.println(restOfStatement);
+
+	   return "What would it mean to" + restOfStatement + "?";
+	}
+	public void test_transformIWantToStatement()
+	{
+		String str = "I feel like I want to eat pizza right now.";
+		String ret = transformIWantToStatement(str);
+		System.out.println(ret);
+	}
+
+	 /**
+	* Take a statement with "you <something> me" and transform it into
+	* "What makes you think that I <something> you?"
+	* @param statement the user statement, assumed to contain "you" followed by "me"
+	* @return the transformed statement
+	*/
+	private String transformYouMeStatement(String statement)
+	{
+	  /**
+	   * trim the statement
+	   * Set new String lastChar to the last character in statement
+	   * if lastChar is a period...
+	   *        remove the period*/
+	   statement = statement.trim();
+	   char lastChar = statement.charAt(statement.length()-1);
+	   if(lastChar == '.'){statement = statement.substring(0,statement.length()-1);}
+	   /*
+	   * Set new int psnOfYou to the result of findKeyword
+	   *        @param statement and "you"
+	   * Set new int psnOfMe to the result of findKeyword
+	   *      @param statement, "me", and psnOfYou + 3
+	   * Set new String restOfStatement to the rest of statement after "You" + 3,
+	   * and before "me".*/
+	   String you = "you";
+	   int psnOfYou = findKeyword(statement,you);
+	   String me = "me";
+	   int psnOfMe = findKeyword(statement,me, psnOfYou+3);
+	   String restOfStatement = statement.substring(psnOfYou+3,psnOfMe);
+	   return "What makes you think that I" + restOfStatement + "you?";
+	}
+	public void test_transformYouMeStatement()
+	{
+		String str = "I feel like you should give that to me";
+		String ret = transformYouMeStatement(str);
+		System.out.println(ret);
 	}
 	/** Ex_02: The findKeyword() Method...
 	 * ========================================================= */
@@ -106,35 +195,25 @@ public class Magpie2
 			if(psn > 0)
 			{
 				before = Character.toString(phrase.charAt(psn-1));
-				//System.out.println("before: " + before);
-				//cout("justBefore",phrase, goal, before, after);
 			}
-		
-				/*check if you can fit goal into the rest of phrase - no need to
+			/*check if you can fit goal into the rest of phrase - no need to
 				proceed otherwise
 					set after = the slot in phrase after psn + length of goal */
-
-				//=====> code here
 			if(psn + goal.length() < phrase.length())
 			{
 				after = Character.toString(phrase.charAt(psn + goal.length()));
-				//cout("with after",phrase, goal, before, after);
 			}
-
-				/* if before and after are not letters (compare before to "a"
+			/* if before and after are not letters (compare before to "a"
 					and after to "z")
 						--return psn
 
 				Otherwise, search for goal in phrase from psn + 1 forward */
-			//System.out.println("before: " + before + "\tafter: " + after);
-			//if(before.compareTo("a") == -6 || before.compareTo("a") == -31 || after.compareTo("z") == -6 || after.compareTo("z") == -31)
 			if((before.compareTo("") == 0 || before.compareTo(" ") == 0) && (after.compareTo("") == 0 || after.compareTo(" ") == 0))
 			{
 				return psn;
 			}
 			else
 			{
-				//System.out.println("Recursion");
 				return findKeyword(phrase, goal, psn+1);
 			}
 		}
@@ -147,16 +226,7 @@ public class Magpie2
 		//set startPos to 0 if not specified
 		return findKeyword(statement, goal, 0);
 	}
-	
-	private void cout(String description, String phrase, String goal, String before, String after)
-	{
-		System.out.println(description);
-		System.out.println("phrase: " + phrase);
-		System.out.println("goal: " + goal);
-		System.out.println("before: " + before);
-		System.out.println("after: " + after + "\n");
-	}
-	
+
 	/** getRandomResponse() method
 	 * =============================================================*/
 	/** Pick a default response to use if nothing else fits.

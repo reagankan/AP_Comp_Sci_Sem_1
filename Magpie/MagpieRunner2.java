@@ -3,8 +3,8 @@ import java.util.*;
 
 /**
  * A simple class to run the Magpie class.
- * @author Laurie White
- * @version April 2012
+ * @author Reagan Kan
+ * @version March 2017
  */
 public class MagpieRunner2
 {

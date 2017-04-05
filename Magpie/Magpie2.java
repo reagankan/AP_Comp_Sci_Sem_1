@@ -79,62 +79,26 @@ public class Magpie2
 	{
 		String before = "", after = "";
 		
-		
-		/* New String variable phrase = a more searchable version of statement.
-		 	-Use a combination of trim() and toLowerCase() modify statement.*/
 		String phrase = statement.trim();  phrase.toLowerCase();
-		
-		/*   New int variable psn = the location of goal in phrase after
-		   startPos*/
-		//System.out.printf("goal: %s\t", goal);
+		goal.toLowerCase();
+	
 		int psn = phrase.indexOf(goal, startPos);
-		//System.out.println("psn: " + psn);
-			/*-->Refinement: Make sure we find goal by itself, and not part
-			of another word ("no" vs no in "know"). if you find an occurrence
-			of goal, make sure before and after aren't letters.
-
-			As long as psn >= 0...*/
-		
-		while(psn >= 0)
+	while(psn >= 0)
 		{
-				/*Check if psn > 0 - there is no need to check for before at the
-				beginning of the word
-					set before = the slot in phrase before psn */
-
-				//====>code here
-		
 			if(psn > 0)
 			{
 				before = Character.toString(phrase.charAt(psn-1));
-				//System.out.println("before: " + before);
-				//cout("justBefore",phrase, goal, before, after);
 			}
-		
-				/*check if you can fit goal into the rest of phrase - no need to
-				proceed otherwise
-					set after = the slot in phrase after psn + length of goal */
-
-				//=====> code here
 			if(psn + goal.length() < phrase.length())
 			{
 				after = Character.toString(phrase.charAt(psn + goal.length()));
-				//cout("with after",phrase, goal, before, after);
 			}
-
-				/* if before and after are not letters (compare before to "a"
-					and after to "z")
-						--return psn
-
-				Otherwise, search for goal in phrase from psn + 1 forward */
-			//System.out.println("before: " + before + "\tafter: " + after);
-			//if(before.compareTo("a") == -6 || before.compareTo("a") == -31 || after.compareTo("z") == -6 || after.compareTo("z") == -31)
 			if((before.compareTo("") == 0 || before.compareTo(" ") == 0) && (after.compareTo("") == 0 || after.compareTo(" ") == 0))
 			{
 				return psn;
 			}
 			else
 			{
-				//System.out.println("Recursion");
 				return findKeyword(phrase, goal, psn+1);
 			}
 		}

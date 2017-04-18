@@ -125,5 +125,18 @@ public class IntArrayWorker
       }
     }
   }
+  
+  /** 
+   * get total of all itnegers in a specified column
+   */
+  public int getColTotal(int col)
+  {
+    int ret = 0;
+	for(int i = 0; i < matrix.length; i++)
+	{
+		ret += matrix[i][col];
+	}
+	return ret;
+  }
  
 }

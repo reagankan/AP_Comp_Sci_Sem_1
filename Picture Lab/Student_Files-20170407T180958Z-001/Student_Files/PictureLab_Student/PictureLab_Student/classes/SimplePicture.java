@@ -142,6 +142,7 @@ public class SimplePicture implements DigitalPicture
   * @return the extendsion (jpg, bmp, giff, etc)
   */
  public String getExtension() { return extension; }
+ public String getFilename() { return fileName; }
 
  
  /**

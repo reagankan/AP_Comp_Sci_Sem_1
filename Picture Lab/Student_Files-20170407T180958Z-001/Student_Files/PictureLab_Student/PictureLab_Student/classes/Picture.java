@@ -340,8 +340,74 @@ public class Picture extends SimplePicture
       }
     }
   }
-  
-  
+    /** 
+	* copy fromPic to center of this.pic 
+    */
+  public void copy(Picture fromPic, 
+                 int startRow, int endRow, int startCol, int endCol)
+  {
+    Pixel fromPixel = null;
+    Pixel toPixel = null;
+    Pixel[][] toPixels = this.getPixels2D();
+    Pixel[][] fromPixels = fromPic.getPixels2D();
+     for (int fromRow = startRow, toRow = (toPixels.length/2)-(endRow-startRow)/2; 
+         fromRow < endRow && toRow < toPixels.length; 
+         fromRow++, toRow++)
+    {
+      for (int fromCol = startCol, toCol = (toPixels[toRow].length/2)-(endCol-startCol)/2; 
+           fromCol < endCol && toCol < toPixels[0].length;  
+           fromCol++, toCol++)
+      {
+        fromPixel = fromPixels[fromRow][fromCol];
+        toPixel = toPixels[toRow][toCol];
+        toPixel.setColor(fromPixel.getColor());
+      }
+    }    
+  }
+   /** 
+	* copy fromPic to center of this.pic 
+    */
+  public void copyBottom(Picture grayImg, Picture negImg)
+  {
+    Pixel fromPixel = null;
+	Pixel toPixel = null;
+	Pixel[][] toPixels = grayImg.getPixels2D();
+	Pixel[][] fromPixels = negImg.getPixels2D();
+	for (int fromRow = fromPixels.length/2, toRow = toPixels.length/2; 
+		 fromRow < fromPixels.length && toRow < toPixels.length; 
+		 fromRow++, toRow++)
+	{
+	for (int fromCol = 0, toCol = 0; 
+		   fromCol < fromPixels[fromRow].length && toCol < toPixels[toRow].length;  
+		   fromCol++, toCol++)
+	  {
+		fromPixel = fromPixels[fromRow][fromCol];
+		toPixel = toPixels[toRow][toCol];
+		toPixel.setColor(fromPixel.getColor());
+	  }
+	}    
+  }
+  /** 
+	* use combo of above functions
+    */
+	public void myCollage(Picture img)
+	{
+		Picture gray = new Picture(img.getFilename());
+		Picture neg = new Picture(img.getFilename());
+		
+		gray.grayscale();
+		neg.negate();
+		gray.explore();
+		//from neg to gray
+		//WHY DOES THIS METHOD NOT NEED OBJECT?
+		//because the parameters to the method are not referenced?
+		copyBottom(gray, neg);
+		
+		gray.mirrorDiagonal();
+		
+		gray.explore();
+	}
+	
   /** copy from the passed fromPic to the
     * specified startRow and startCol in the
     * current picture
@@ -372,32 +438,7 @@ public class Picture extends SimplePicture
       }
     }   
   }
-    /** 
-	* copy fromPic to this.pic 
-    */
-  public void copy(Picture fromPic, 
-                 int startRow, int startCol)
-  {
-    Pixel fromPixel = null;
-    Pixel toPixel = null;
-    Pixel[][] toPixels = this.getPixels2D();
-    Pixel[][] fromPixels = fromPic.getPixels2D();
-    for (int fromRow = 0, toRow = startRow; 
-         fromRow < fromPixels.length &&
-         toRow < toPixels.length; 
-         fromRow++, toRow++)
-    {
-      for (int fromCol = 0, toCol = startCol; 
-           fromCol < fromPixels[0].length &&
-           toCol < toPixels[0].length;  
-           fromCol++, toCol++)
-      {
-        fromPixel = fromPixels[fromRow][fromCol];
-        toPixel = toPixels[toRow][toCol];
-        toPixel.setColor(fromPixel.getColor());
-      }
-    }   
-  }
+  
 
   /** Method to create a collage of several pictures */
   public void createCollage()

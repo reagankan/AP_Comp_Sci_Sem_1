@@ -2,6 +2,7 @@ import java.util.*;
 import java.lang.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.text.DecimalFormat; 
+import java.util.concurrent.TimeUnit;
 public class Satellite
 {
    public static void main(String[]args)
@@ -38,9 +39,10 @@ public class Satellite
        }
 
 
-       System.out.println(printout);
+       System.out.println(printout); pauseFor(3); endl();
 	   /**********************************************************************/
-	   System.out.println("\n\nLab 14.1 \n==========================");
+	   System.out.println("\n\nLab 14.1");
+	   System.out.println(printout);pauseFor(3); endl();System.out.println("===========================");
 	   double one, two;
 	   for(int i = 0; i < locate.size(); i++)
 	   {
@@ -88,4 +90,35 @@ public class Satellite
    {
        return roundTwoDecimals(location[0]) + ", " + roundTwoDecimals(location[1]);
    }
+   public static void endl()
+	{
+		System.out.println();
+	}
+	public static void msleep(int milli)
+	{
+		try{
+			TimeUnit.MILLISECONDS.sleep(milli);
+		} catch(InterruptedException ex){
+			//do nothing...just need to catch exception
+		}
+	}
+	public static void pauseFor(int sec)
+	{
+		System.out.print("Moving on in: ");
+		for(int i = sec; i >= 1; i--)
+		{
+			System.out.print(i);
+			msleep(250);
+			cout("...");
+			
+		}
+	}
+	public static void cout(String str)
+	{
+		for(int i = 0; i < str.length(); i++)
+		{
+			System.out.print(str.charAt(i));
+			msleep(250);
+		}
+	}
 }

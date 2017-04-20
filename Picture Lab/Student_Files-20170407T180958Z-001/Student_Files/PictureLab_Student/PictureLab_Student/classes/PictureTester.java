@@ -31,7 +31,7 @@ public class PictureTester
     beach.explore();
   }
   /** Method to test negate */
-  public static void grayscale()
+  public static void testGrayscale()
   {
     Picture beach = new Picture("beach.jpg");
     beach.grayscale();
@@ -109,6 +109,28 @@ public class PictureTester
     temple.mirrorTemple();
     temple.explore();
   }
+  /** Method to test copy by overlaying several layers of flowers on the moon*/
+  public static void testCopy()
+  {
+    Picture moon = new Picture("moon-surface.jpg");
+	Picture flower = new Picture("flower1.jpg");
+	Picture ele = new Picture("kitten2.jpg");
+	ele.explore();
+	
+    moon.explore();
+    moon.copy(flower,0,32,25,65);
+    moon.explore();
+	moon.copy(ele,127,207,204,309);
+    moon.explore();
+	moon.copy(ele,254,352,298,465);
+    moon.explore();
+  }
+  /** Method to test copy by overlaying several layers of flowers on the moon*/
+  public static void testMyCollage()
+  {
+    Picture beach = new Picture("beach.jpg");
+	beach.myCollage(beach);
+  }
   
   /** Method to test the collage method */
   public static void testCollage()
@@ -137,8 +159,8 @@ public class PictureTester
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
-    //testNegate();
     //testGrayscale();
+	//testNegate();
     //testFixUnderwater();
     //testMirrorVertical();
 	//testMirrorVerticalRightToLeft();
@@ -147,10 +169,13 @@ public class PictureTester
     //testMirrorDiagonal();
 	//testMirrorArms();
     //testMirrorGull();
+	//testCopy();
+	
+	testMyCollage();
 	
     //testMirrorTemple();
-    testCollage();
-    //testCopy();
+    //testCollage();
+    
     //testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();

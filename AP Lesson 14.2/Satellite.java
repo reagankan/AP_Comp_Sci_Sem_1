@@ -2,18 +2,41 @@ import java.util.*;
 import java.lang.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.text.DecimalFormat; 
+import java.util.concurrent.TimeUnit;
 public class Satellite
 {
    public static void main(String[]args)
    {
-       System.out.println("Lab 14.2 \n==========================");
+       System.out.println("Lab 14.2");
 	   ArrayList<Location> locate = new ArrayList<>();
        double[] honLoc = {5, 6};
        locate.add(new Honda(honLoc));
        locate.add(new Toyota("8, 9"));
        locate.add(new GMC(3, 8));
+	   double[] home = {0, 0};
+		String printout = 
+               "==========================" + "\nStarting locations...";
 
-       double[] home = {0, 0};
+
+       for (Location l : locate)
+       {
+           printout += "\nLocation for " + l.getID() + ": (" + getLocation(l.getLoc()) + ")";
+       }
+
+
+       printout += "\n\n" + "==========================" +
+                   "\nDistance from home...";
+
+
+       for (Location l : locate)
+       {
+           double temp = getDistance(l.getLoc(), home);
+		   temp *= 100; temp = Math.round(temp); temp /= 100;
+		   printout += "\nDistance for " + l.getID() + ": (" + temp + ")";
+       }
+
+
+       System.out.println(printout);cout("==========================\n");
 	   double one, two;
 	   for(int i = 0; i < locate.size(); i++)
 	   {
@@ -35,7 +58,8 @@ public class Satellite
 			   System.out.println();
 		   }
 	   }
-	   System.out.println("==========================\nDistance from home...");
+	   cout("==========================\n");
+	   System.out.println("Distance from home...");
 	   for(Location elem : locate)
 	   {
 			double temp = roundTwoDecimals(getDistance(elem.getLoc(), home));
@@ -61,4 +85,35 @@ public class Satellite
    {
        return roundTwoDecimals(location[0]) + ", " + roundTwoDecimals(location[1]);
    }
+   public static void endl()
+	{
+		System.out.println();
+	}
+	public static void msleep(int milli)
+	{
+		try{
+			TimeUnit.MILLISECONDS.sleep(milli);
+		} catch(InterruptedException ex){
+			//do nothing...just need to catch exception
+		}
+	}
+	public static void pauseFor(int sec)
+	{
+		System.out.print("Moving on in: ");
+		for(int i = sec; i >= 1; i--)
+		{
+			System.out.print(i);
+			msleep(250);
+			cout("...");
+			
+		}
+	}
+	public static void cout(String str)
+	{
+		for(int i = 0; i < str.length(); i++)
+		{
+			System.out.print(str.charAt(i));
+			msleep(250);
+		}
+	}
 }

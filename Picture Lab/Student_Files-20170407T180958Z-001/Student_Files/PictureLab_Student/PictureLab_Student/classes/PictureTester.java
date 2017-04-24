@@ -136,7 +136,7 @@ public class PictureTester
   public static void testCollage()
   {
     Picture canvas = new Picture("640x480.jpg");
-    canvas.createCollage();
+	canvas.createCollage();
     canvas.explore();
   }
   
@@ -144,7 +144,24 @@ public class PictureTester
   public static void testEdgeDetection()
   {
     Picture swan = new Picture("swan.jpg");
-    swan.edgeDetection(10);
+    swan.explore();
+	swan.edgeDetection(7);
+    swan.explore();
+  }
+  /** Method to test edgeDetection2 */
+  public static void testEdgeDetection2()
+  {
+    Picture swan = new Picture("swan.jpg");
+    swan.explore();
+	swan = swan.edgeDetection2(7);
+    swan.explore();
+  }
+  /** Method to test edgeDetection3 */
+  public static void testEdgeDetection3()
+  {
+    Picture swan = new Picture("swan.jpg");
+    swan.explore();
+	swan = swan.edgeDetection3(7);
     swan.explore();
   }
   
@@ -152,9 +169,7 @@ public class PictureTester
     * method in Java */
   public static void main(String[] args)
   {
-    // uncomment a call here to run a test
-    // and comment out the ones you don't want
-    // to run
+	//Uncomment list of commands to view the methods Reagan Kan wrote.
     //testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
@@ -170,14 +185,14 @@ public class PictureTester
 	//testMirrorArms();
     //testMirrorGull();
 	//testCopy();
-	
-	testMyCollage();
-	
+	//testMyCollage();
+	//testEdgeDetection2();
+	//testEdgeDetection3();
     //testMirrorTemple();
     //testCollage();
-    
     //testEdgeDetection();
-    //testEdgeDetection2();
+	
+    //Uncomment list of commands to view the methods AP wrote.
     //testChromakey();
     //testEncodeAndDecode();
     //testGetCountRedOverValue(250);

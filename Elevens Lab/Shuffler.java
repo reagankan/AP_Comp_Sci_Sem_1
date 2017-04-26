@@ -1,13 +1,14 @@
 /**
  * This class provides a convenient way to test shuffling methods.
  */
+ import java.util.*;
 public class Shuffler {
 
 	/**
 	 * The number of consecutive shuffle steps to be performed in each call
 	 * to each sorting procedure.
 	 */
-	private static final int SHUFFLE_COUNT = 1;
+	private static final int SHUFFLE_COUNT = 3;
 
 
 	/**
@@ -15,7 +16,7 @@ public class Shuffler {
 	 * @param args is not used.
 	 */
 	public static void main(String[] args) {
-		System.out.println("Results of " + SHUFFLE_COUNT +
+		System.out.print("Results of " + SHUFFLE_COUNT +
 								 " consecutive perfect shuffles:");
 		int[] values1 = {0, 1, 2, 3};
 		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
@@ -24,9 +25,8 @@ public class Shuffler {
 			for (int k = 0; k < values1.length; k++) {
 				System.out.print(" " + values1[k]);
 			}
-			System.out.println();
 		}
-		System.out.println();
+		System.out.println("\n");
 
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive efficient selection shuffles:");
@@ -40,6 +40,9 @@ public class Shuffler {
 			System.out.println();
 		}
 		System.out.println();
+		
+		
+		testActivity3Question1();
 	}
 
 
@@ -51,6 +54,22 @@ public class Shuffler {
 	 */
 	public static void perfectShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		int[] shuffled = new int[values.length];
+		//System.out.print((values.length+1)/2);
+		int k = 0;
+		for(int i = 0; i < (values.length+1)/2; i++)
+		{
+			shuffled[k] = values[i];
+			k+=2;
+		}
+		System.out.println();
+		k = 1;
+		for(int i = (values.length+1)/2; i < values.length; i++)
+		{
+			shuffled[k] = values[i];
+			k+=2;
+		}
+		System.arraycopy( shuffled, 0, values, 0, shuffled.length );
 	}
 
 	/**
@@ -66,5 +85,31 @@ public class Shuffler {
 	 */
 	public static void selectionShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		Random rand = new Random();
+		int k = -1, temp = -1;
+		for(int i = values.length-1; i >= 0; i--)
+		{
+			k = rand.nextInt(i+1);
+			temp = values[k];
+			values[k] = values[i];
+			values[i] = temp;
+		}
+	}
+
+	public static String flip() {
+		/* *** QUESTION 1 IN ACTIVITY 3 *** */
+		Random rand = new Random();
+		if(rand.nextInt(6) == 0 || rand.nextInt(6) == 1)
+		{
+			return "tails";
+		}
+		return "heads";
+	}
+	public static void testActivity3Question1()
+	{
+		for(int i = 0; i < 12; i++)
+		{
+			System.out.println(flip());
+		}
 	}
 }

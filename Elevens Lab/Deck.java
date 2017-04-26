@@ -37,12 +37,13 @@ public class Deck {
 			for(int j = 0; j < suits.length; j++)
 			{
 				Card newCard =  new Card(ranks[i],suits[j],values[i]);
-				System.out.println("Adding: " + newCard);
+				//System.out.println("Adding: " + newCard);
 				construct.add(newCard);
 			}
 		}
 		cards = construct;
 		size = cards.size();
+		this.shuffle();
 	}
 
 
@@ -52,7 +53,11 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		return true;
+		if(size == 0)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -61,7 +66,7 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		return 2000;
+		return size;
 	}
 
 	/**
@@ -79,8 +84,12 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		Card c = new Card("High","Black",10);
-		return c;
+		if(this.isEmpty())
+		{
+			return null;
+		}
+		size--;
+		return cards.get(size);
 	}
 
 	/**

@@ -44,6 +44,7 @@ public class Shuffler {
 		
 		testActivity3Question1();
 		testActivity3Question2();
+		testActivity3Question3();
 	}
 
 
@@ -140,6 +141,19 @@ public class Shuffler {
 		int[] a = {1,2,3,4,5}, b = {4,5,3,3,1};
 		printArray(a, "a"); printArray(b,"b");
 		System.out.println("arePermutations? "+ arePermutations(a,b));
+	}
+	public static void testActivity3Question3()
+	{
+		int[] values = {1,2,3,4}, kArray = {0,1,1,0};
+		int k = -1, temp = -1;
+		for(int i = values.length-1; i >= 0; i--)
+		{
+			k = kArray[i];
+			temp = values[k];
+			values[k] = values[i];
+			values[i] = temp;
+		}
+		printArray(values,"values");
 	}
 	public static void printArray(int[] arr, String name)
 	{

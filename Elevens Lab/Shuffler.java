@@ -43,6 +43,7 @@ public class Shuffler {
 		
 		
 		testActivity3Question1();
+		testActivity3Question2();
 	}
 
 
@@ -95,7 +96,6 @@ public class Shuffler {
 			values[i] = temp;
 		}
 	}
-
 	public static String flip() {
 		/* *** QUESTION 1 IN ACTIVITY 3 *** */
 		Random rand = new Random();
@@ -107,9 +107,45 @@ public class Shuffler {
 	}
 	public static void testActivity3Question1()
 	{
+		System.out.println("Activity 3 Question 1");
 		for(int i = 0; i < 12; i++)
 		{
 			System.out.println(flip());
+		}
+		System.out.println();
+	}
+	
+	
+	
+	public static boolean arePermutations(int[] array1, int[] array2) {
+		/* *** QUESTION 2 IN ACTIVITY 3 *** */
+		Arrays.sort(array1); Arrays.sort(array2);
+		boolean ret = true;
+		for(int i = 0; i < array1.length && i < array1.length; i++)
+		{
+			if(array1[i] != array2[i])
+			{
+				ret = false;
+			}
+		}
+		return ret;
+	}
+	public static void testActivity3Question2()
+	{
+		System.out.println("Activity 3 Question 2");
+		int[] one = {1,2,3,4}, two = {4,2,3,1};
+		printArray(one, "one"); printArray(two,"two");
+		System.out.println("arePermutations? "+ arePermutations(one,two));
+		
+		int[] a = {1,2,3,4,5}, b = {4,5,3,3,1};
+		printArray(a, "a"); printArray(b,"b");
+		System.out.println("arePermutations? "+ arePermutations(a,b));
+	}
+	public static void printArray(int[] arr, String name)
+	{
+		for(int i = 0; i < arr.length; i++)
+		{
+			System.out.println(name + "[" + i + "]: " + arr[i]);
 		}
 	}
 }

@@ -17,7 +17,7 @@ public class Deck {
 	 * The next card to be dealt is at size - 1.
 	 */
 	private int size;
-
+	private int num;
 
 	/**
 	 * Creates a new <code>Deck</code> instance.<BR>

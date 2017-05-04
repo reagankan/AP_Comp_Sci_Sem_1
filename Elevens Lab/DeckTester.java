@@ -12,7 +12,7 @@ public class DeckTester {
 	public static void main(String[] args) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
 		activity_1();
-		//activity_2();
+		activity_2();
 		activity_4();
 	}
 	public static void activity_1()

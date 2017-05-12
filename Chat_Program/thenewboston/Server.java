@@ -30,7 +30,7 @@ public class Server extends JFrame{
 				}
 			}
 		);
-		add(userText,BorderLayout.NORTH);
+		add(userText,BorderLayout.SOUTH);
 		chatWindow = new JTextArea();
 		add(new JScrollPane(chatWindow));
 		setSize(300,150);
@@ -113,4 +113,41 @@ public class Server extends JFrame{
 			ioException.printStackTrace();
 		}
 	}
+	
+	//send a message to client
+	private void sendMessage(String message)
+	{
+		try{
+			output.writeObject("SERVER - " + message);
+			output.flush();
+			showMessage("\n SERVER - " + message);
+		}catch(IOException ioException){
+			chatWindow.append("\n ERROR: CANNOT SEND\n");
+		}
+	}
+	
+	//updates chatWindow
+	private void showMessage(final String text)
+	{
+		SwingUtilities.invokeLater(
+			new Runnable(){
+				public void run(){
+					chatWindow.append(text);
+				}
+			}
+		);
+	}
+	
+	//let the user type
+	private void ableToType(final boolean tof)
+	{
+		SwingUtilities.invokeLater(
+			new Runnable(){
+				public void run(){
+					userText.setEditable(tof);
+				}
+			}
+		);
+	}
 }
+//last updated Monday May 8, 2017 7:14PM

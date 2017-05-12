@@ -6,6 +6,31 @@ import javax.swing.*;
 //JMS
 //up to 59
 //https://www.youtube.com/watch?v=r-yuvNv58nM&t=1s
+
+
+//http://cs.lmu.edu/~ray/notes/javanetexamples/
+
+/*
+JTextPane textPane = new JTextPane();
+textPane.setText( "original text" );
+StyledDocument doc = textPane.getStyledDocument();
+
+//  Define a keyword attribute
+
+SimpleAttributeSet keyWord = new SimpleAttributeSet();
+StyleConstants.setForeground(keyWord, Color.RED);
+StyleConstants.setBackground(keyWord, Color.YELLOW);
+StyleConstants.setBold(keyWord, true);
+
+//  Add some text
+
+try
+{
+    doc.insertString(0, "Start of text\n", null );
+    doc.insertString(doc.getLength(), "\nEnd of text", keyWord );
+}
+catch(Exception e) { System.out.println(e); }
+*/
 public class Server extends JFrame{
 	private JTextField userText;
 	private JTextArea chatWindow;
@@ -17,8 +42,8 @@ public class Server extends JFrame{
 	//constructor
 	public Server()
 	{
-		super("MSG");
-		userText = new JTextField();
+		super("Server Window");
+		userText = new JTextField();//creates textbox
 		userText.setEditable(false);//user cannot type when not connected
 		userText.addActionListener(
 			new ActionListener()
@@ -51,7 +76,7 @@ public class Server extends JFrame{
 					whileChatting();
 				}catch(EOFException eofException)
 				{
-					showMessage("\n Server ended the connection!");
+					showMessage("\nServer ended the connection!");
 				}finally
 				{
 					//aka closeCrap
@@ -102,7 +127,7 @@ public class Server extends JFrame{
 	//close streams and sockets once done chatting
 	private void closeStuff()
 	{
-		showMessage("\n Closing connections...\n");
+		showMessage("\nClosing connections...\n");
 		ableToType(false);
 		try{
 			output.close();
@@ -128,6 +153,16 @@ public class Server extends JFrame{
 	
 	//updates chatWindow
 	private void showMessage(final String text)
+	{
+		SwingUtilities.invokeLater(
+			new Runnable(){
+				public void run(){
+					chatWindow.append(text);
+				}
+			}
+		);
+	}
+	private void showImage(final String text)
 	{
 		SwingUtilities.invokeLater(
 			new Runnable(){

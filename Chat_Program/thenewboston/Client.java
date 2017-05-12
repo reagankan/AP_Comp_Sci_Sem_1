@@ -17,7 +17,7 @@ public class Client extends JFrame
 	//constructor
 	public Client(String host)
 	{
-		super("Client");
+		super("Client Window");
 		serverIP = host;
 		userText = new JTextField();
 		userText.setEditable(false);
@@ -46,7 +46,7 @@ public class Client extends JFrame
 			setupStreams();
 			whileChatting();
 		}catch(EOFException eofException){
-			showMessage("\n Client terminated the connection!");
+			showMessage("\nClient terminated the connection!");
 		}catch(IOException ioException){
 			ioException.printStackTrace();
 		}finally{
@@ -69,7 +69,7 @@ public class Client extends JFrame
 		output = new ObjectOutputStream(connection.getOutputStream());
 		output.flush();
 		input = new ObjectInputStream(connection.getInputStream());
-		showMessage("\n The streams are setup.\n");
+		showMessage("\nThe streams are setup.\n");
 	}
 	
 	//while chatting with server
@@ -81,7 +81,7 @@ public class Client extends JFrame
 				message = (String) input.readObject();
 				showMessage("\n" + message);
 			}catch(ClassNotFoundException classNotFoundException){
-				showMessage("\n Unknown object type");
+				showMessage("\nUnknown object type");
 			}
 		}while(!message.equals("SERVER - END"));
 	}
@@ -89,7 +89,7 @@ public class Client extends JFrame
 	//close the streams and sockets
 	private void closeStuff()
 	{
-		showMessage("\nClosing stuff.");
+		showMessage("\nClosing connections...\n");
 		ableToType(false);
 		try{
 			output.close();

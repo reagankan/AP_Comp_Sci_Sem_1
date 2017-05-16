@@ -42,6 +42,7 @@ public class Server extends JFrame{
 	//constructor
 	public Server()
 	{
+		//super class is a jFrame
 		super("Server Window");
 		userText = new JTextField();//creates textbox
 		userText.setEditable(false);//user cannot type when not connected
@@ -55,10 +56,13 @@ public class Server extends JFrame{
 				}
 			}
 		);
-		add(userText,BorderLayout.SOUTH);
-		chatWindow = new JTextArea();
-		add(new JScrollPane(chatWindow));
-		setSize(300,150);
+		add(userText,BorderLayout.SOUTH);//add textbox to jFrame
+		
+		chatWindow = new JTextArea(); //init chatWindow
+		add(new JScrollPane(chatWindow)); //place chatWindow in JScrollPane, then add to jFrame
+		setSize(300,150);//set size
+		
+		//show window
 		setVisible(true);
 	}
 	
